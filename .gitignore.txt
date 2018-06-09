@@ -1,0 +1,2 @@
+/2018Composition/library/metadata/*
+/2018Composition/library/ShaderCache/*
