@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/CompositionTool.unity
+- path: C:/Users/Clayton/Desktop/SUGARIQP/3dnotation/OldIQP/SteppTrial/Assets/FlexibleUISystems/FlexibleDraggableObjectExample.unity
   isLoaded: 1
   isActive: 1
