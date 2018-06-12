@@ -11,14 +11,33 @@ public class TimelinePositioning : MonoBehaviour{
 
     private Vector3 TimelinePoint;
     private Vector3 TimelineOffset;
-    private float lenOfTimelineSeg = 13.36f;
-    public List<GameObject> TimingGrids;
+    private float lenOfTimelineSeg = 1.4f;
+    private int segmentsPerScreen = 11;
+    public int measures;
+    public GameObject Target;
+    private List<GameObject> TimingGrids;
     private List<float> TimingGridDefaultLocation;
     
-    void Start () {
+    void Start ()
+    {
+        //fill at least 1 screen worth with mesures.
+        if (measures < segmentsPerScreen)
+            measures = segmentsPerScreen;
+        
+       
+        TimingGrids = new List<GameObject>();
         TimingGridDefaultLocation = new List<float>();
-        for (int GridIndex = 0; GridIndex < TimingGrids.Count; GridIndex++)
+        
+        //add initial targets
+        TimingGrids.Add(Target);
+        TimingGridDefaultLocation.Add(0);
+        
+        //create the number of mesures and put them in place
+        for (int GridIndex = 1; GridIndex < measures; GridIndex++)
         {
+            //place each grid after the previous grid with 0 rotation
+            TimingGrids.Add(Instantiate(Target, new Vector3(lenOfTimelineSeg*GridIndex, 0f , 10f), Quaternion.identity));
+            //get the default location through simple multiplication
             TimingGridDefaultLocation.Add(lenOfTimelineSeg*GridIndex);
         }
     }
@@ -59,8 +78,8 @@ public class TimelinePositioning : MonoBehaviour{
                 //percent moved is how far along the timeline the time has moved
                 float percentMoved = (cursorPosition.x + 1.74f) / 12.54f;
                 //lenOfTimeline is the total length of the timeline
-                float TotalToMoveGridspace = TimingGridDefaultLocation[GridIndex] - percentMoved * ((TimingGrids.Count-1) * 13.36f); 
-                TimingGrids[GridIndex].transform.position = new Vector3(TotalToMoveGridspace, 0, 5);
+                float TotalToMoveGridspace = TimingGridDefaultLocation[GridIndex] - percentMoved * ((TimingGrids.Count-segmentsPerScreen) * lenOfTimelineSeg); 
+                TimingGrids[GridIndex].transform.position = new Vector3(TotalToMoveGridspace, 0, 10);
             }
         }
         //else snap to max or min    
@@ -70,7 +89,7 @@ public class TimelinePositioning : MonoBehaviour{
             transform.position = new Vector3(-1.7f, cursorPosition.y, cursorPosition.z);
             for (int GridIndex = 0; GridIndex < TimingGrids.Count; GridIndex++)
             {
-                TimingGrids[GridIndex].transform.position = new Vector3(TimingGridDefaultLocation[GridIndex], 0, 5);  
+                TimingGrids[GridIndex].transform.position = new Vector3(TimingGridDefaultLocation[GridIndex], 0, 10);  
             }
            
         }
@@ -80,7 +99,7 @@ public class TimelinePositioning : MonoBehaviour{
             transform.position = new Vector3(10.84f, cursorPosition.y, cursorPosition.z);
             for (int GridIndex = 0; GridIndex < TimingGrids.Count; GridIndex++)
             {
-                TimingGrids[GridIndex].transform.position = new Vector3(TimingGridDefaultLocation[GridIndex] - 13.36f*(TimingGrids.Count-1), 0, 5);  
+                TimingGrids[GridIndex].transform.position = new Vector3(TimingGridDefaultLocation[GridIndex] - lenOfTimelineSeg*(TimingGrids.Count-segmentsPerScreen), 0, 10);  
             }
         }
     }
