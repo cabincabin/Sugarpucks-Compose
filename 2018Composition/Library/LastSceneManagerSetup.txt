@@ -1,4 +1,5 @@
 sceneSetups:
-- path: C:/Users/Clayton/Desktop/SUGARIQP/3dnotation/OldIQP/SteppTrial/Assets/FlexibleUISystems/FlexibleDraggableObjectExample.unity
+- path: C:/Users/Clayton/Desktop/SUGARIQP/3dnotation/OldIQP/SteppTrial/Assets/Stepp/Demo/Demo
+    Scenes/Grid Sequencer Demo.unity
   isLoaded: 1
   isActive: 1

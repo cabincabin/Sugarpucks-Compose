@@ -49,11 +49,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\FlexibleUISystems\FlexibleDraggableObject\Scripts\FlexibleDraggableObject.cs" />
-    <Compile Include="Assets\FlexibleUISystems\FlexibleDraggableObject\Scripts\FlexibleResizeHandler.cs" />
-    <Compile Include="Assets\FlexibleUISystems\Generic\FlexibleExtensions.cs" />
+    <Compile Include="Assets\Scripts\Button.cs" />
     <Compile Include="Assets\Scripts\TimelinePositioning.cs" />
-    <Compile Include="Assets\Scripts\TimelinePositioningCopy.cs" />
+    <Compile Include="Assets\Stepp\Stepp.cs" />
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>
