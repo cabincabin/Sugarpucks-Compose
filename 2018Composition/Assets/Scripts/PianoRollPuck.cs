@@ -13,6 +13,8 @@ public class PianoRollPuck : MonoBehaviour{
     
     void OnMouseDown()
     {
+        //Play the audio on click and generate the next sprite
+        //bug where it takes 2 clicks to actually move the sprite
         Instantiate(Target, transform.position, Quaternion.identity);
         AudioSource audio = GetComponent<AudioSource>();
         audio.Play();

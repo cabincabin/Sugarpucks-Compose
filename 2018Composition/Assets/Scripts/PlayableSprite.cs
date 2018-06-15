@@ -14,12 +14,14 @@ public class PlayableSprite : MonoBehaviour
 
      private void OnMouseDown()
      {
+         //allows the puck to move from gridspace to gridspace
          name = "Move";
          
      }
 
      private void OnMouseUp()
      {
+         //allows the puck to lock to the given grid the puck is hovering above
          name = "PlayPuck";
      }
 
