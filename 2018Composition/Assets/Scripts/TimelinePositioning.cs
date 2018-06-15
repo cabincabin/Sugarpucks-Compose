@@ -16,7 +16,8 @@ public class TimelinePositioning : MonoBehaviour{
     private float lenOfTimelineSeg = 1.4f;
     private int segmentsPerScreen = 11;
     
-    private List<GameObject> TimingGrids;
+    //do not add anything to this public obj
+    public List<GameObject> TimingGrids;
     private List<float> TimingGridDefaultLocation;
     
     void Start ()

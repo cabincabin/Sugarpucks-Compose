@@ -9,7 +9,7 @@ public class PlayableSprite : MonoBehaviour
  {
      //1-12 for a1-g#1
      //12-24 for a2-g#2
-     public int Number;
+     public int PitchNumber;
      
 
      private void OnMouseDown()

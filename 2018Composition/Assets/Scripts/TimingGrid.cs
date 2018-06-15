@@ -9,7 +9,8 @@ using UnityEngine.EventSystems;
 public class TimingGrid : MonoBehaviour
 {
         //list of up to 12 sprites to play on a given beat
-        private List<Collider2D> Sprites;
+        //do not add anything to this
+        public List<Collider2D> Sprites;
 
         void Start()
         {
