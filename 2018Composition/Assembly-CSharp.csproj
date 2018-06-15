@@ -50,7 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Button.cs" />
+    <Compile Include="Assets\Scripts\PianoRollPuck.cs" />
+    <Compile Include="Assets\Scripts\PlayableSprite.cs" />
     <Compile Include="Assets\Scripts\TimelinePositioning.cs" />
+    <Compile Include="Assets\Scripts\TimingGrid.cs" />
     <Compile Include="Assets\Stepp\Stepp.cs" />
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

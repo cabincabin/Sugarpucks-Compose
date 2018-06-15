@@ -8,13 +8,14 @@ using UnityEngine.EventSystems;
 //When moving the timeline, the grid used also moves
 //the distance it moves changes dynamically with the length of the grid used.
 public class TimelinePositioning : MonoBehaviour{
-
+    
+    public int measures;
+    public GameObject Grid;
     private Vector3 TimelinePoint;
     private Vector3 TimelineOffset;
     private float lenOfTimelineSeg = 1.4f;
     private int segmentsPerScreen = 11;
-    public int measures;
-    public GameObject Target;
+    
     private List<GameObject> TimingGrids;
     private List<float> TimingGridDefaultLocation;
     
@@ -29,14 +30,14 @@ public class TimelinePositioning : MonoBehaviour{
         TimingGridDefaultLocation = new List<float>();
         
         //add initial targets
-        TimingGrids.Add(Target);
+        TimingGrids.Add(Grid);
         TimingGridDefaultLocation.Add(0);
         
         //create the number of mesures and put them in place
         for (int GridIndex = 1; GridIndex < measures; GridIndex++)
         {
             //place each grid after the previous grid with 0 rotation
-            TimingGrids.Add(Instantiate(Target, new Vector3(lenOfTimelineSeg*GridIndex, 0f , 10f), Quaternion.identity));
+            TimingGrids.Add(Instantiate(Grid, new Vector3(lenOfTimelineSeg*GridIndex, 0f , 10f), Quaternion.identity));
             //get the default location through simple multiplication
             TimingGridDefaultLocation.Add(lenOfTimelineSeg*GridIndex);
         }
@@ -103,4 +104,6 @@ public class TimelinePositioning : MonoBehaviour{
             }
         }
     }
+
+    
 }
