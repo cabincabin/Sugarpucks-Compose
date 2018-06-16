@@ -10,12 +10,15 @@ public class PlayButton : MonoBehaviour
     public TimelinePositioning timeline;
     public Stepp CreateAndPlaySequence;
     private bool isPlay;
+    public Sprite play;
+    public Sprite stop;
+
 
     private void OnMouseUpAsButton()
     {
         //invert button every click, starting or stoping the subroutine
         isPlay = !isPlay;
-
+        SpriteRenderer spriteRenderer = (SpriteRenderer)GetComponent<Renderer>();
         if (isPlay)
         {
             //wipe the current puck list
@@ -35,11 +38,13 @@ public class PlayButton : MonoBehaviour
                 }
             }
             CreateAndPlaySequence.StartSequencer();
+            spriteRenderer.sprite = stop;
         }
         //Stop Stepp
         if (!isPlay)
         {
             CreateAndPlaySequence.StopSequencer();
+            spriteRenderer.sprite = play;
         }
         
     }
