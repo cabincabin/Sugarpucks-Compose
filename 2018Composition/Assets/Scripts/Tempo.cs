@@ -51,7 +51,7 @@ public class Tempo : MonoBehaviour
     
         }
     
-        PlaySequenceTempo.tempo = (int) (50 + (350*transform.position.x / .8f));
+        PlaySequenceTempo.tempo = (int) (50 + (550*transform.position.x / .8f));
     }
 
 }

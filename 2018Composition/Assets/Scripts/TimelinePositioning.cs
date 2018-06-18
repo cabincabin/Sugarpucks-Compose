@@ -44,9 +44,6 @@ public class TimelinePositioning : MonoBehaviour{
         }
     }
  
-    void Update () {
-    }
-    
     //On the mouse down, get the original location of the mouse as it corrisponds to the in game transformation
     //so that the mouse position does not have to be continueously transformed to an in game position.
     void OnMouseDown()

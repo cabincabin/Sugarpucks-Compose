@@ -7,11 +7,11 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class PlayableSprite : MonoBehaviour
  {
-     //1-12 for a1-g#1
+     //0-11 for a1-g#1
      //12-24 for a2-g#2
      public int PitchNumber;
      
-
+     
      private void OnMouseDown()
      {
          //allows the puck to move from gridspace to gridspace
