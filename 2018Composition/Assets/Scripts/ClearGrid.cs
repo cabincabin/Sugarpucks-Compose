@@ -13,6 +13,11 @@ public class ClearGrid : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
+        Clear();
+    }
+
+    public void Clear()
+    {
         List<GameObject> GridsAsGameObj = timeline.TimingGrids;
         foreach (var GridGameObj in GridsAsGameObj)
         {

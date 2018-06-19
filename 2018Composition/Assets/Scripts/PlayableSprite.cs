@@ -16,7 +16,7 @@ public class PlayableSprite : MonoBehaviour
      float clickdelay = .25f;
 
 
-     public void changePitchUpDown()
+     public void ChangePitchUpDown()
      {
          if (PitchNumber / 12f < 1)
          {
@@ -47,7 +47,7 @@ public class PlayableSprite : MonoBehaviour
          {
              Debug.Log("ClickClick");
              clicked = 0;
-             changePitchUpDown();
+             ChangePitchUpDown();
          }
          
          //allows the puck to move from gridspace to gridspace
