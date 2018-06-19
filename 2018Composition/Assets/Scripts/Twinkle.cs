@@ -17,19 +17,26 @@ public class Twinkle : MonoBehaviour
 
     private void Start()
     {
+        //get the notes in relitive notation, 0 indexed. -1 is a rest note
         RelitiveNotes = new List<int>{0, 0, 4, 4, 5, 5, 4, -1, 3, 3, 2, 2, 1, 1, 0, -1};
     }
 
     private void OnMouseUpAsButton()
     {
+        //if there is a key
         if (currKey.hasKey)
         {
+            //clear the board
             clear.Clear();
             int timelinePosCounter = 0;
+            //for each relitive note
             foreach (var relitiveIndex in RelitiveNotes)
             {
+                //get the note 
                 if (relitiveIndex != -1)
                 {
+                    //keep the song the same, so rase the note an octive if above the base key. 
+                    //in twinkle, the song starts at the key and goes UP not down, no notes should be below the key note
                     if (currKey.NumInKey[relitiveIndex] < currKey.NumInKey[0])
                     {
                         addNoteToTimeline(currKey.NumInKey[relitiveIndex] + 12, timelinePosCounter);
@@ -50,6 +57,7 @@ public class Twinkle : MonoBehaviour
     {
         List<GameObject> gridsAsGameObjects = timeline.TimingGrids;
         GameObject PlayToAdd = SpriteNotes[0];
+        //get the right note and make a copy of it
         foreach (var PlayPuck in SpriteNotes)
         {
             if (PlayPuck.GetComponent<PlayableSprite>().PitchNumber%12 == NoteNum%12)
@@ -57,10 +65,10 @@ public class Twinkle : MonoBehaviour
                 PlayToAdd = Instantiate(PlayPuck);
             }
         }
+        //add the note to the grid
         PlayToAdd.name = "SugarStick";
         if(NoteNum>=12)
             PlayToAdd.GetComponent<PlayableSprite>().ChangePitchUpDown();
-        
         if(position < gridsAsGameObjects.Count)
             gridsAsGameObjects[position].GetComponent<TimingGrid>().Sprites.Add(PlayToAdd.GetComponent<Collider2D>());
     }

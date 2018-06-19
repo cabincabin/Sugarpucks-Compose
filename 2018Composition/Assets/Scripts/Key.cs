@@ -39,9 +39,10 @@ public class Key : MonoBehaviour
     //allows piano puck to choose key
     public void chooseKey(int KeyNum)
     {
-        
+        //if a key can be and is chosen
         if (CanChooseKey)
         {
+            //show that a key has been choosen
             hasKey = true;
             NumInKey = new List<int>
             {

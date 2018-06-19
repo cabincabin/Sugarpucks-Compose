@@ -13,8 +13,10 @@ public class DeleteOnContact : MonoBehaviour
 
     private void Update()
     {
+        //if a new key was chosen, or the public boolean destroy all was flipped
         if (destroyAll)
         {
+            //find all objects on the piano section
             Collider2D[] collideObjects = Physics2D.OverlapAreaAll(new Vector2(-10f,4.2f), new Vector2(-5.4f, -5f) );
             //detect when the sprite is moved out of the grid and remove it from the list
             foreach (var other in collideObjects)
@@ -25,8 +27,6 @@ public class DeleteOnContact : MonoBehaviour
                     Destroy(other);
                 }
             }
-           
-
             destroyAll = false;
         }
     }

@@ -21,10 +21,12 @@ public class PianoRollPuck : MonoBehaviour{
      
     private void Update()
     {
+        //if the puck is the next one in the triad, the puck shoul wiggle
         if (CanWiggle)
         {
             wiggle();
         }
+        //if there is a key that the song is currently in, use that key to create the chord
         if(Keychanger.hasKey)
             RecomendChord(); 
     }
@@ -56,9 +58,10 @@ public class PianoRollPuck : MonoBehaviour{
         }
     }
 
+    //this is a long one and should be broken into helpers
     private void RecomendChord()
          {
-             
+            
              List<GameObject> GridsAsGameObj = timeline.TimingGrids;
              //for each grid
              TimingGrid CurrGrid = GridsAsGameObj[0].GetComponent<TimingGrid>();
@@ -68,9 +71,11 @@ public class PianoRollPuck : MonoBehaviour{
                  TimingGrid Grid = GridsAsGameObj[beat].GetComponent<TimingGrid>();
                  if (Grid.Sprites.Count>0)
                  {
+                     //get the last grid with anything in it 
                      CurrGrid = Grid;
                  }
              }
+             
 
              //if there is a grid update
              if (CurrGrid.Sprites.Count>0 && (CurrGrid != lastGrid || SpritesInLastGrid != CurrGrid.Sprites.Count))
@@ -87,7 +92,10 @@ public class PianoRollPuck : MonoBehaviour{
                  {
                      //find the notes in the key
                      int pitchNum = lastGrid.Sprites[0].GetComponent<PlayableSprite>().PitchNumber;
-                                
+                     
+                     //find the note in the key that the current sprite is.
+                     //if the sprite is A in the key of A, the index would be 0
+                     //B in the key of A would be 1... ect
                      int keyNumIndex = -1;
                      for (int index = 0; index < Keychanger.NumInKey.Count; index++)
                      {
@@ -97,7 +105,7 @@ public class PianoRollPuck : MonoBehaviour{
                          }
                      }
                      
-                     
+                     //if the current puck in the last gridspace is in the key AND this sugar puck is the next note in the triad, wiggle ths puck
                      if ( keyNumIndex != -1 && Keychanger.NumInKey[(keyNumIndex + 2) % Keychanger.NumInKey.Count] ==
                          PlaySprite.GetComponent<PlayableSprite>().PitchNumber % 12)
                      {
@@ -114,7 +122,7 @@ public class PianoRollPuck : MonoBehaviour{
                                 
                      int keyNumIndex1 = -1;
                      int keyNumIndex2 = -1;
-                     //find the notes in the key
+                     //find the notes in the key from the sugar pucks in the last grid.
                      for (int index = 0; index < Keychanger.NumInKey.Count; index++)
                      {
                          if (Keychanger.NumInKey[index] == pitchNum1)
@@ -127,8 +135,6 @@ public class PianoRollPuck : MonoBehaviour{
                          }
                      }
                      
-                     Debug.Log(keyNumIndex1);
-                     Debug.Log(keyNumIndex2);
                      
                      //find which note is the base of the triad, after assessing if the notes can be a triad
                      if (keyNumIndex1 != -1 && keyNumIndex2 != -1)
@@ -160,6 +166,7 @@ public class PianoRollPuck : MonoBehaviour{
     
     void OnMouseDown()
     {
+        //on the event that a new key can be chosen, make the key this current sugar puck if clicked.
         Keychanger.chooseKey(PlaySprite.GetComponent<PlayableSprite>().PitchNumber%12);
         //Play the audio on click and generate the next sprite
         //bug where it takes 2 clicks to actually move the sprite

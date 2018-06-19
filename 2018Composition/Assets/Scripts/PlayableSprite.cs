@@ -15,6 +15,7 @@ public class PlayableSprite : MonoBehaviour
      float clicktime = 0;
      float clickdelay = .25f;
 
+    //change the pitch up, or down based on the current pitch, turning the puck sideways for indication 2nd octive
 
      public void ChangePitchUpDown()
      {
@@ -44,6 +45,8 @@ public class PlayableSprite : MonoBehaviour
          
          bool keepInPos = name.Equals("SugarStick");
 
+         //check if the puck has been double clicked.
+         //if so, change the octive of the puck
          if (clicked > 1 || Time.time - clicktime > clickdelay) 
              clicked = 0;
          Debug.Log("ResetClickClick");
