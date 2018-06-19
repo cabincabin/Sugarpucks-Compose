@@ -17,7 +17,7 @@ public class PianoRollPuck : MonoBehaviour{
     private bool CanWiggle;
     private bool wiggleRight;
     private TimingGrid lastGrid;
-    private int SpritesInLastGrid= 0;
+    private int SpritesInLastGrid=0;
      
     private void Update()
     {

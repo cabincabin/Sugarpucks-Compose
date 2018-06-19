@@ -14,7 +14,21 @@ public class PlayableSprite : MonoBehaviour
      float clicked = 0;
      float clicktime = 0;
      float clickdelay = .25f;
-     
+
+
+     public void changePitchUpDown()
+     {
+         if (PitchNumber / 12f < 1)
+         {
+             PitchNumber = PitchNumber + 12;
+             transform.eulerAngles = new Vector3(0, 0, 270);
+         }
+         else
+         {
+             PitchNumber = PitchNumber - 12;
+             transform.eulerAngles = new Vector3(0, 0, 0);
+         }
+     }
      
      private void OnMouseDown()
      {
@@ -33,16 +47,7 @@ public class PlayableSprite : MonoBehaviour
          {
              Debug.Log("ClickClick");
              clicked = 0;
-             if (PitchNumber / 12f < 1)
-             {
-                 PitchNumber = PitchNumber + 12;
-                 transform.eulerAngles = new Vector3(0, 0, 270);
-             }
-             else
-             {
-                 PitchNumber = PitchNumber - 12;
-                 transform.eulerAngles = new Vector3(0, 0, 0);
-             }
+             changePitchUpDown();
          }
          
          //allows the puck to move from gridspace to gridspace
