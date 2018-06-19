@@ -11,9 +11,40 @@ public class PlayableSprite : MonoBehaviour
      //12-24 for a2-g#2
      public int PitchNumber;
      
+     float clicked = 0;
+     float clicktime = 0;
+     float clickdelay = .25f;
+     
      
      private void OnMouseDown()
      {
+         if (clicked > 1 || Time.time - clicktime > clickdelay) 
+             clicked = 0;
+         Debug.Log("ResetClickClick");
+         Debug.Log(Time.time - clicktime);
+         if (clicked == 0)
+         {
+             Debug.Log("Click");
+             clicked++;
+             clicktime = Time.time;
+         }
+         //if doubleclicked, change note up an octive
+         else if (clicked == 1 && Time.time - clicktime < clickdelay)
+         {
+             Debug.Log("ClickClick");
+             clicked = 0;
+             if (PitchNumber / 12f < 1)
+             {
+                 PitchNumber = PitchNumber + 12;
+                 transform.eulerAngles = new Vector3(0, 0, 270);
+             }
+             else
+             {
+                 PitchNumber = PitchNumber - 12;
+                 transform.eulerAngles = new Vector3(0, 0, 0);
+             }
+         }
+         
          //allows the puck to move from gridspace to gridspace
          name = "Move";
          

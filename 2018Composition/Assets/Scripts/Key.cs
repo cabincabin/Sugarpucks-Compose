@@ -14,11 +14,13 @@ public class Key : MonoBehaviour
     //0 should be word key
     //1 - 12 should be a through g#
     public List<Sprite> KeyIcon;
+
+    public bool hasKey;
     //piano pucks default location
     private float defaultx = -8;
     private bool CanChooseKey;
     public List<int> NumInKey;
-    
+
 
     //when selected allow for key change
     private void OnMouseUpAsButton()
@@ -32,13 +34,14 @@ public class Key : MonoBehaviour
     //allows piano puck to choose key
     public void chooseKey(int KeyNum)
     {
+        
         if (CanChooseKey)
         {
+            hasKey = true;
             NumInKey = new List<int>
             {
                 KeyNum, (KeyNum+2)%12, (KeyNum+4)%12, (KeyNum+5)%12, (KeyNum+7)%12, (KeyNum+9)%12, (KeyNum+11)%12
             };
-            NumInKey.Add(KeyNum);
             //reset position of all pucks
             foreach (var Puck in PianoPucks)
             {
