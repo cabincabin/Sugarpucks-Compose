@@ -14,12 +14,17 @@ public class Key : MonoBehaviour
     //0 should be word key
     //1 - 12 should be a through g#
     public List<Sprite> KeyIcon;
+    public DeleteOnContact PianoContact;
 
+    //do not touch
     public bool hasKey;
     //piano pucks default location
     private float defaultx = -8;
     private bool CanChooseKey;
+    //do not touch
     public List<int> NumInKey;
+    
+    
 
 
     //when selected allow for key change
@@ -46,11 +51,13 @@ public class Key : MonoBehaviour
             foreach (var Puck in PianoPucks)
             {
                 Puck.transform.position = new Vector3(defaultx,  Puck.transform.position.y,  Puck.transform.position.z);
+                Puck.GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.3f);
             }
 
             foreach (var Num in NumInKey)
             {
                 PianoPucks[Num].transform.position = new Vector3(defaultx + 1f,  PianoPucks[Num].transform.position.y,  PianoPucks[Num].transform.position.z);
+                PianoPucks[Num].GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
             }
             //shift first puck over
            
@@ -59,6 +66,7 @@ public class Key : MonoBehaviour
             SpriteRenderer spriteRenderer = (SpriteRenderer)GetComponent<Renderer>();
             //render keyname
             spriteRenderer.sprite = KeyIcon[KeyNum+1];
+            PianoContact.destroyAll = true;
         }
     }
 }

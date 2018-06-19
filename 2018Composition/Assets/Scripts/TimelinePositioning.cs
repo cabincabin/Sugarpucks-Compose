@@ -19,6 +19,7 @@ public class TimelinePositioning : MonoBehaviour{
     //do not add anything to this public obj
     public List<GameObject> TimingGrids;
     private List<float> TimingGridDefaultLocation;
+    public DeleteOnContact PianoContact;
     
     void Start ()
     {
@@ -52,7 +53,7 @@ public class TimelinePositioning : MonoBehaviour{
         TimelinePoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
         //change only the x TimelineOffset.
         TimelineOffset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, TimelinePoint.y, TimelinePoint.z));
-        
+        PianoContact.destroyAll = true;
     }
     
     //update the timeline position and move the TimingGrids by the relitive distance needed for transform
