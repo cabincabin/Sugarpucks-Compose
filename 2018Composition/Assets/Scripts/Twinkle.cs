@@ -57,6 +57,7 @@ public class Twinkle : MonoBehaviour
                 PlayToAdd = Instantiate(PlayPuck);
             }
         }
+        PlayToAdd.name = "SugarStick";
         if(NoteNum>=12)
             PlayToAdd.GetComponent<PlayableSprite>().ChangePitchUpDown();
         
