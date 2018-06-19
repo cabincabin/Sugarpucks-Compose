@@ -31,25 +31,7 @@ public class PlayableSprite : MonoBehaviour
      }
      
      private void OnMouseDown()
-     {
-         if (clicked > 1 || Time.time - clicktime > clickdelay) 
-             clicked = 0;
-         Debug.Log("ResetClickClick");
-         Debug.Log(Time.time - clicktime);
-         if (clicked == 0)
-         {
-             Debug.Log("Click");
-             clicked++;
-             clicktime = Time.time;
-         }
-         //if doubleclicked, change note up an octive
-         else if (clicked == 1 && Time.time - clicktime < clickdelay)
-         {
-             Debug.Log("ClickClick");
-             clicked = 0;
-             ChangePitchUpDown();
-         }
-         
+     { 
          //allows the puck to move from gridspace to gridspace
          name = "Move";
          
@@ -59,6 +41,28 @@ public class PlayableSprite : MonoBehaviour
      {
          //allows the puck to lock to the given grid the puck is hovering above
          name = "PlayPuck";
+         
+         bool keepInPos = name.Equals("SugarStick");
+
+         if (clicked > 1 || Time.time - clicktime > clickdelay) 
+             clicked = 0;
+         Debug.Log("ResetClickClick");
+         Debug.Log(Time.time - clicktime);
+         if (clicked == 0)
+         {
+             Debug.Log("Click");
+             clicked++;
+             clicktime = Time.time;
+             if (keepInPos)
+                 name = "SugarStick";
+         }
+         //if doubleclicked, change note up an octive
+         else if (clicked == 1 && Time.time - clicktime < clickdelay)
+         {
+             Debug.Log("ClickClick");
+             clicked = 0;
+             ChangePitchUpDown();
+         }
      }
 
 

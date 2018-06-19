@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 
 public class DeleteOnContact : MonoBehaviour
 {
-    public bool destroyAll;
+    public bool destroyAll=false;
 
     private void Update()
     {
@@ -19,7 +19,7 @@ public class DeleteOnContact : MonoBehaviour
             //detect when the sprite is moved out of the grid and remove it from the list
             foreach (var other in collideObjects)
             {
-                if (other.gameObject.GetComponents<PlayableSprite>().Length != 0 && other.gameObject.name !="SugarStick")
+                if (other.gameObject.GetComponents<PlayableSprite>().Length != 0 && !other.gameObject.name.Equals("SugarStick"))
                 {
                     other.gameObject.GetComponent<SpriteRenderer>().enabled = false;
                     Destroy(other);
@@ -28,13 +28,14 @@ public class DeleteOnContact : MonoBehaviour
            
 
             destroyAll = false;
+            Debug.Log("WHYAMIHERE?");
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         //detect when the sprite is moved out of the grid and remove it from the list
-        if (other.gameObject.name=="Move")
+        if (other.gameObject.name.Equals("Move"))
         {
             other.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             Destroy(other);
