@@ -28,7 +28,6 @@ public class DeleteOnContact : MonoBehaviour
            
 
             destroyAll = false;
-            Debug.Log("WHYAMIHERE?");
         }
     }
 
