@@ -1,5 +1,4 @@
 sceneSetups:
-- path: C:/Users/Clayton/Desktop/SUGARIQP/3dnotation/OldIQP/SteppTrial/Assets/Stepp/Demo/Demo
-    Scenes/Grid Sequencer Demo.unity
+- path: Assets/CompositionTool.unity
   isLoaded: 1
   isActive: 1

@@ -153,7 +153,7 @@ public class Stepp : MonoBehaviour
 	#endregion
 
 	#region - Initialization
-	private void Awake()
+	public void Awake()
 	{
 		sequence = new bool[pitchCount, stepCount];
 		InitializeVoices();

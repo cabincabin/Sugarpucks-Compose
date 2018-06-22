@@ -49,6 +49,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AddMesures.cs" />
     <Compile Include="Assets\Scripts\ClearGrid.cs" />
     <Compile Include="Assets\Scripts\DeleteOnContact.cs" />
     <Compile Include="Assets\Scripts\Key.cs" />

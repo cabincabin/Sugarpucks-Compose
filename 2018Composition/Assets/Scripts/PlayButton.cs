@@ -26,11 +26,13 @@ public class PlayButton : MonoBehaviour
             //Get all of the grids
             List<GameObject> GridsAsGameObj = timeline.TimingGrids;
             //for each grid
-            //CreateAndPlaySequence.stepCount = GridsAsGameObj.Count;
+            CreateAndPlaySequence.stepCount = GridsAsGameObj.Count;
+            CreateAndPlaySequence.Awake();
             for(int beat = 0; beat < GridsAsGameObj.Count; beat++)
             {
                 //find if there are any pucks added to the beat
                 TimingGrid Grid = GridsAsGameObj[beat].GetComponent<TimingGrid>();
+               
                 for(int PuckIndex = Grid.Sprites.Count-1; PuckIndex >= 0; PuckIndex--)
                 {
                     //get the puck's note and add the note to the corrisponding note in the sequence.

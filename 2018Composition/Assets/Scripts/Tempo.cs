@@ -11,6 +11,8 @@ public class Tempo : MonoBehaviour
     public Stepp PlaySequenceTempo; 
     private Vector3 TimelinePoint;
     private Vector3 TimelineOffset;
+    public int MaxTempo;
+    public int MinTempo;
     
         
     void OnMouseDown()
@@ -51,7 +53,7 @@ public class Tempo : MonoBehaviour
     
         }
     
-        PlaySequenceTempo.tempo = (int) (50 + (2950*transform.position.x / .8f));
+        PlaySequenceTempo.tempo = (int) (MinTempo + ((MaxTempo-MinTempo)*transform.position.x / .8f));
     }
 
 }
