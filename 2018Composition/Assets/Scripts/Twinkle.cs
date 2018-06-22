@@ -17,8 +17,10 @@ public class Twinkle : MonoBehaviour
 
     private void Start()
     {
+        //TwinkleTwinkle
         //get the notes in relitive notation, 0 indexed. -1 is a rest note
         RelitiveNotes = new List<int>{0, 0, 4, 4, 5, 5, 4, -1, 3, 3, 2, 2, 1, 1, 0, -1};
+        //RelitiveNotes = new List<int>{2, 1, 0, 1, 2, 2, 2, -1, 1, 1, 1, -1, 2, 4, 4, -1, 2, 1, 0, 1, 2, 2, 2, -1, 2, 1, 2, 1, 0, -1};
     }
 
     private void OnMouseUpAsButton()

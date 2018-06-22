@@ -26,15 +26,28 @@ public class PlayButton : MonoBehaviour
             //Get all of the grids
             List<GameObject> GridsAsGameObj = timeline.TimingGrids;
             //for each grid
+            //CreateAndPlaySequence.stepCount = GridsAsGameObj.Count;
             for(int beat = 0; beat < GridsAsGameObj.Count; beat++)
             {
                 //find if there are any pucks added to the beat
                 TimingGrid Grid = GridsAsGameObj[beat].GetComponent<TimingGrid>();
-                foreach (var puck in Grid.Sprites)
+                for(int PuckIndex = Grid.Sprites.Count-1; PuckIndex >= 0; PuckIndex--)
                 {
                     //get the puck's note and add the note to the corrisponding note in the sequence.
-                    PlayableSprite SugarPuck = puck.GetComponent<PlayableSprite>();
-                    CreateAndPlaySequence.AddPitchAtStep(SugarPuck.PitchNumber,beat);
+                    if (Grid.Sprites[PuckIndex].GetComponents<PlayableSprite>().Length != 0)
+                    {
+                        PlayableSprite SugarPuck = Grid.Sprites[PuckIndex].GetComponent<PlayableSprite>();
+                        CreateAndPlaySequence.AddPitchAtStep(SugarPuck.PitchNumber,beat);
+                    }
+                    else
+                    {
+                        Grid.Sprites[PuckIndex].gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                        Grid.Sprites[PuckIndex].GetComponent<Collider2D>().enabled = false;
+                        Destroy(Grid.Sprites[PuckIndex]);
+                        Grid.Sprites.RemoveAt(PuckIndex);
+                    }
+
+                    
                 }
             }
             CreateAndPlaySequence.StartSequencer();

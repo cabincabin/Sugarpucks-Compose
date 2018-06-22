@@ -24,6 +24,7 @@ public class DeleteOnContact : MonoBehaviour
                 if (other.gameObject.GetComponents<PlayableSprite>().Length != 0 && !other.gameObject.name.Equals("SugarStick"))
                 {
                     other.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                    other.gameObject.GetComponent<Collider2D>().enabled = false;
                     Destroy(other);
                 }
             }

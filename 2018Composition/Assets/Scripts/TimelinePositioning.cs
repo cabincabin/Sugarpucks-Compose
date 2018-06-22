@@ -15,6 +15,7 @@ public class TimelinePositioning : MonoBehaviour{
     private Vector3 TimelineOffset;
     private float lenOfTimelineSeg = 1.4f;
     private int segmentsPerScreen = 11;
+    public int TimeSig;
     
     //do not add anything to this public obj
     public List<GameObject> TimingGrids;
@@ -38,7 +39,11 @@ public class TimelinePositioning : MonoBehaviour{
         for (int GridIndex = 1; GridIndex < measures; GridIndex++)
         {
             //place each grid after the previous grid with 0 rotation
-            TimingGrids.Add(Instantiate(Grid, new Vector3(lenOfTimelineSeg*GridIndex, 0f , 10f), Quaternion.identity));
+            GameObject NextGrid = Instantiate(Grid, new Vector3(lenOfTimelineSeg * GridIndex, 0f, 10f),
+                Quaternion.identity);
+            if(GridIndex%TimeSig!=0)
+                NextGrid.transform.localScale = new Vector3(NextGrid.transform.localScale.x,NextGrid.transform.localScale.y*.8f,NextGrid.transform.localScale.z);
+            TimingGrids.Add(NextGrid);
             //get the default location through simple multiplication
             TimingGridDefaultLocation.Add(lenOfTimelineSeg*GridIndex);
         }

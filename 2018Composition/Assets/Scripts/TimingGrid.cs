@@ -20,30 +20,35 @@ public class TimingGrid : MonoBehaviour
 
         private void Update()
         {
+                float CurrXPos = transform.position.x;
+                Collider2D[] collideObjects = Physics2D.OverlapAreaAll(new Vector2(CurrXPos-5.6f,3.9f), new Vector2(CurrXPos-4.14f, -4.75f));
+                //detect and add any new sugar pucks in the column of the given grid/beat
+                foreach (var other in collideObjects)
+                {
+                        if (other.gameObject.name=="PlayPuck" && !Sprites.Contains(other))
+                        {
+                                Sprites.Add(other);
+                                other.name = "SugarStick";
+                        } 
+                }
+
+                
                 //track the pucks so that they stay locked to the same gridspace until moved
                 foreach (var puck in Sprites)
                 {
                         if (puck.name!="Move")
                         {
-                                Vector3 BodyLocation = new Vector3(transform.position.x-4.86f, puck.transform.position.y, 7);
+                                Vector3 BodyLocation = new Vector3(CurrXPos-4.86f, puck.transform.position.y, 7);
                                 puck.transform.position = BodyLocation;   
                         }
-                          
+                     
                 }
+
                 
         }
 
         
-        private void OnTriggerStay2D(Collider2D other)
-        {
-                //detect and add any new sugar pucks in the column of the given grid/beat
-                if (other.gameObject.name=="PlayPuck" && !Sprites.Contains(other))
-                {
-                        Sprites.Add(other);
-                        other.name = "SugarStick";
-                }
-               
-        }
+
         
         
         private void OnTriggerExit2D(Collider2D other)

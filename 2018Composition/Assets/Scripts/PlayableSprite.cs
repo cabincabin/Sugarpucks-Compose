@@ -10,6 +10,7 @@ public class PlayableSprite : MonoBehaviour
      //0-11 for a1-g#1
      //12-24 for a2-g#2
      public int PitchNumber;
+     private Vector3 CurrScale = new Vector3(-.3f, .25f, 1f);
      
      float clicked = 0;
      float clicktime = 0;
@@ -22,11 +23,16 @@ public class PlayableSprite : MonoBehaviour
          if (PitchNumber / 12f < 1)
          {
              PitchNumber = PitchNumber + 12;
-             transform.eulerAngles = new Vector3(0, 0, 270);
+             CurrScale = new Vector3(-.25f, .3f, 1f);
+             transform.localScale = CurrScale;
+             transform.eulerAngles = new Vector3(0, 0, 292.5f);
+             
          }
          else
          {
              PitchNumber = PitchNumber - 12;
+             CurrScale = new Vector3(-.3f, .25f, 1f);
+             transform.localScale = CurrScale;
              transform.eulerAngles = new Vector3(0, 0, 0);
          }
      }
@@ -35,6 +41,7 @@ public class PlayableSprite : MonoBehaviour
      { 
          //allows the puck to move from gridspace to gridspace
          name = "Move";
+         transform.localScale = new Vector3(-.35f, .3f, 1f);
          
      }
 
@@ -66,6 +73,15 @@ public class PlayableSprite : MonoBehaviour
              clicked = 0;
              ChangePitchUpDown();
          }
+         transform.localScale = CurrScale;
+         
+         if (transform.position.x < -5.6f)
+         {
+             GetComponent<SpriteRenderer>().enabled = false;
+             GetComponent<Collider2D>().enabled = false;
+             Destroy(this);
+         }
+         
      }
 
 
