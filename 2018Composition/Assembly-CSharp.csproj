@@ -50,12 +50,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AddMesures.cs" />
+    <Compile Include="Assets\Scripts\ChangeSkin.cs" />
     <Compile Include="Assets\Scripts\ClearGrid.cs" />
     <Compile Include="Assets\Scripts\DeleteOnContact.cs" />
     <Compile Include="Assets\Scripts\Key.cs" />
     <Compile Include="Assets\Scripts\PianoRollPuck.cs" />
     <Compile Include="Assets\Scripts\PlayButton.cs" />
     <Compile Include="Assets\Scripts\PlayableSprite.cs" />
+    <Compile Include="Assets\Scripts\RhythmPlay1.cs" />
+    <Compile Include="Assets\Scripts\RhythmPlayPoly.cs" />
     <Compile Include="Assets\Scripts\Tempo.cs" />
     <Compile Include="Assets\Scripts\TimelinePositioning.cs" />
     <Compile Include="Assets\Scripts\TimingGrid.cs" />

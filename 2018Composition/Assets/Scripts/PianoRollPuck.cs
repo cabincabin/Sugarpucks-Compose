@@ -21,14 +21,18 @@ public class PianoRollPuck : MonoBehaviour{
      
     private void Update()
     {
-        //if the puck is the next one in the triad, the puck shoul wiggle
-        if (CanWiggle)
+        if (Keychanger != null)
         {
-            wiggle();
+            //if the puck is the next one in the triad, the puck shoul wiggle
+            if (CanWiggle)
+            {
+                wiggle();
+            }
+
+            //if there is a key that the song is currently in, use that key to create the chord
+            if (Keychanger.hasKey)
+                RecomendChord();
         }
-        //if there is a key that the song is currently in, use that key to create the chord
-        if(Keychanger.hasKey)
-            RecomendChord(); 
     }
 
     //if the puck should wiggle, wiggles the puck right and left at a medium speed to "suggest" the puck
@@ -167,12 +171,12 @@ public class PianoRollPuck : MonoBehaviour{
     void OnMouseDown()
     {
         //on the event that a new key can be chosen, make the key this current sugar puck if clicked.
-        Keychanger.chooseKey(PlaySprite.GetComponent<PlayableSprite>().PitchNumber%12);
+        if (Keychanger != null)
+            Keychanger.chooseKey(PlaySprite.GetComponent<PlayableSprite>().PitchNumber%12);
         //Play the audio on click and generate the next sprite
         //bug where it takes 2 clicks to actually move the sprite
         Instantiate(PlaySprite, transform.position, Quaternion.identity);
         AudioSource audio = GetComponent<AudioSource>();
-        audio.Play();
         audio.clip = pitch;
         audio.Play();
     }

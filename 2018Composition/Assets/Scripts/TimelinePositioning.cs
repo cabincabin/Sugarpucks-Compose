@@ -1,10 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using UnityEngine.Networking;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 //When moving the timeline, the grid used also moves
 //the distance it moves changes dynamically with the length of the grid used.
@@ -29,8 +24,8 @@ public class TimelinePositioning : MonoBehaviour{
     void Start ()
     {
         //fill at least 1 screen worth with mesures.
-        if (measures < segmentsPerScreen)
-            measures = segmentsPerScreen;
+//        if (measures < segmentsPerScreen)
+//            measures = segmentsPerScreen;
         
        
         TimingGrids = new List<GameObject>();
@@ -49,6 +44,7 @@ public class TimelinePositioning : MonoBehaviour{
             if(GridIndex%TimeSig!=0)
                 NextGrid.transform.localScale = new Vector3(NextGrid.transform.localScale.x,NextGrid.transform.localScale.y*.8f,NextGrid.transform.localScale.z);
             TimingGrids.Add(NextGrid);
+            NextGrid.GetComponent<TimingGrid>().BeatNum = GridIndex % TimeSig;
             //get the default location through simple multiplication
             TimingGridDefaultLocation.Add(lenOfTimelineSeg*GridIndex);
         }
@@ -72,6 +68,7 @@ public class TimelinePositioning : MonoBehaviour{
         //get the default location through simple multiplication
         TimingGridDefaultLocation.Add(lenOfTimelineSeg*(measures-1));
         AddMesureDefaultPosition = measures * lenOfTimelineSeg;
+        NextGrid.GetComponent<TimingGrid>().BeatNum = (measures-1)%TimeSig;
         updateTimelinePos();
     }
  

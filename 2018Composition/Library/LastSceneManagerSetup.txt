@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/CompositionTool.unity
+- path: Assets/CompositionToolPolyRhythm45.unity
   isLoaded: 1
   isActive: 1

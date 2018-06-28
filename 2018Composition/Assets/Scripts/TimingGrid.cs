@@ -1,9 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 //each grid is a note to be added to the STEP cs file
 public class TimingGrid : MonoBehaviour
@@ -11,6 +7,7 @@ public class TimingGrid : MonoBehaviour
         //list of up to 12 sprites to play on a given beat
         //do not add anything to this
         public List<Collider2D> Sprites;
+        public int BeatNum = 0;
 
         void Start()
         {
@@ -29,10 +26,13 @@ public class TimingGrid : MonoBehaviour
                         {
                                 Sprites.Add(other);
                                 other.name = "SugarStick";
+                                //0 is default, 1 indexed
+                                if (other.gameObject.GetComponents<ChangeSkin>().Length != 0)
+                                        other.GetComponent<ChangeSkin>().changeSkin(BeatNum+1);
                         } 
                 }
 
-                
+        
                 //track the pucks so that they stay locked to the same gridspace until moved
                 foreach (var puck in Sprites)
                 {
@@ -41,16 +41,16 @@ public class TimingGrid : MonoBehaviour
                                 Vector3 BodyLocation = new Vector3(CurrXPos-4.86f, puck.transform.position.y, 7);
                                 puck.transform.position = BodyLocation;   
                         }
-                     
+             
                 }
 
-                
+        
         }
 
-        
 
-        
-        
+
+
+
         private void OnTriggerExit2D(Collider2D other)
         {
                 //detect when the sprite is moved out of the grid and remove it from the list
@@ -58,8 +58,9 @@ public class TimingGrid : MonoBehaviour
                 {
                         Sprites.Remove(other);
                 }
-               
+       
         }
 
-      
+
 }
+
