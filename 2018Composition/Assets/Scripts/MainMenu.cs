@@ -10,14 +10,14 @@ public class MainMenu : MonoBehaviour
 	
 	public void Compose()
 	{
-		SceneManager.LoadScene(0);
+		SceneManager.LoadScene(1);
 		Debug.Log(SceneManager.sceneCount);
 	}
 
 	public void Learn()
 	{
 		if(LearnDDown.value !=0)
-		SceneManager.LoadScene(LearnDDown.value);
+			SceneManager.LoadScene(LearnDDown.value+1);
 	}
 
 	public void QuitGame()

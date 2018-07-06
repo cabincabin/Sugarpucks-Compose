@@ -13,8 +13,12 @@ public class Tempo : MonoBehaviour
     private Vector3 TimelineOffset;
     public int MaxTempo;
     public int MinTempo;
-    
-        
+
+    private void Start()
+    {
+        PlaySequenceTempo.tempo = MinTempo;
+    }
+
     void OnMouseDown()
     {
         //get the timeline's position

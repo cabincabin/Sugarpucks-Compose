@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AddMesures.cs" />
+    <Compile Include="Assets\Scripts\BackToMenu.cs" />
     <Compile Include="Assets\Scripts\ChangeSkin.cs" />
     <Compile Include="Assets\Scripts\ClearGrid.cs" />
     <Compile Include="Assets\Scripts\DeleteOnContact.cs" />
