@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Tempo.cs" />
     <Compile Include="Assets\Scripts\TimelinePositioning.cs" />
     <Compile Include="Assets\Scripts\TimingGrid.cs" />
+    <Compile Include="Assets\Scripts\TurnOnOffAllSprites.cs" />
     <Compile Include="Assets\Scripts\Twinkle.cs" />
     <Compile Include="Assets\Stepp\Stepp.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
