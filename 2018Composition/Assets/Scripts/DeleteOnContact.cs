@@ -21,7 +21,7 @@ public class DeleteOnContact : MonoBehaviour
             //detect when the sprite is moved out of the grid and remove it from the list
             foreach (var other in collideObjects)
             {
-                if (other.gameObject.GetComponents<PlayableSprite>().Length != 0 && !other.gameObject.name.Equals("SugarStick"))
+               if (other.gameObject.GetComponents<PlayableSprite>().Length != 0 && !other.gameObject.name.Equals("SugarStick"))
                 {
                     other.gameObject.GetComponent<SpriteRenderer>().enabled = false;
                     other.gameObject.GetComponent<Collider2D>().enabled = false;

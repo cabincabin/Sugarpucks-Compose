@@ -9,18 +9,20 @@ public class TimelinePositioning : MonoBehaviour{
     public GameObject Grid;
     private Vector3 TimelinePoint;
     private Vector3 TimelineOffset;
-    private float lenOfTimelineSeg = 1.4f;
+    public float lenOfTimelineSeg = 1.4f;
     private int segmentsPerScreen = 11;
     public int TimeSig;
     public GameObject P1;
     public GameObject P4;
     public GameObject PX;
     
+    
     //do not add anything to this public obj
     public List<GameObject> TimingGrids;
     private List<float> TimingGridDefaultLocation;
     private float AddMesureDefaultPosition;
-    
+
+
     void Start ()
     {
         //fill at least 1 screen worth with mesures.
@@ -69,7 +71,7 @@ public class TimelinePositioning : MonoBehaviour{
         TimingGridDefaultLocation.Add(lenOfTimelineSeg*(measures-1));
         AddMesureDefaultPosition = measures * lenOfTimelineSeg;
         NextGrid.GetComponent<TimingGrid>().BeatNum = (measures-1)%TimeSig;
-        updateTimelinePos();
+        updateTimelinePos(transform.position.x);
     }
  
     //On the mouse down, get the original location of the mouse as it corrisponds to the in game transformation
@@ -109,12 +111,39 @@ public class TimelinePositioning : MonoBehaviour{
             transform.position = new Vector3(10.84f, cursorPosition.y, cursorPosition.z);
         }
 
-        updateTimelinePos();
+        updateTimelinePos(transform.position.x);
     }
 
-    private void updateTimelinePos()
+    private void updateTimelinePos(float x)
     {
-        float percentMoved = (transform.position.x + 1.74f) / 12.54f;
+        float percentMoved = (x + 1.74f) / 12.54f;
+        //transform each of the gridspaces
+        for (int GridIndex = 0; GridIndex < TimingGrids.Count; GridIndex++)
+        {
+            //multiply the timeline offset by the total length of the timing grids, so that, at the begining of the timeline
+            //the grid will be at the start and at end of the timeline the grid will be at the end.
+            //percent moved is how far along the timeline the time has moved
+            
+            //lenOfTimeline is the total length of the timeline
+            float TotalToMoveGridspace = TimingGridDefaultLocation[GridIndex] - percentMoved * ((TimingGrids.Count+1-(segmentsPerScreen)) * lenOfTimelineSeg); 
+            TimingGrids[GridIndex].transform.position = new Vector3(TotalToMoveGridspace, 0, 10);
+        }
+        Vector3 PosOfAdd = new Vector3(AddMesureDefaultPosition- percentMoved * ((TimingGrids.Count+1-(segmentsPerScreen)) * lenOfTimelineSeg), 0f, 0f);
+        P1.transform.position = PosOfAdd;
+        P4.transform.position = PosOfAdd;
+        PX.transform.position = PosOfAdd;
+
+
+    }
+    
+    public void TimelinePosTo(int x)
+    {
+        
+        transform.position = new Vector3(-1.7f, 0, 0);
+        
+        float percentMoved = (x*1.00f-(segmentsPerScreen))/(TimingGrids.Count+1-(segmentsPerScreen));
+        if(percentMoved < 0)
+            percentMoved = 0;
         //transform each of the gridspaces
         for (int GridIndex = 0; GridIndex < TimingGrids.Count; GridIndex++)
         {

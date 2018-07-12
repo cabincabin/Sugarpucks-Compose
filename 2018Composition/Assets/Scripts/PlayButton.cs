@@ -12,7 +12,30 @@ public class PlayButton : MonoBehaviour
     private bool isPlay;
     public Sprite play;
     public Sprite stop;
+    public GameObject PlayPos;
+   
 
+    void Start()
+    {
+        PlayPos.GetComponent<SpriteRenderer>().enabled = false;
+    }
+    
+    private void Update()
+    {
+        if (isPlay)
+        {
+            PlayPos.GetComponent<SpriteRenderer>().enabled = true;
+            if (CreateAndPlaySequence.currentStep<11)
+            {
+                timeline.TimelinePosTo(0);
+                PlayPos.transform.position = new Vector3((CreateAndPlaySequence.currentStep)*timeline.lenOfTimelineSeg,PlayPos.transform.position.y,PlayPos.transform.position.z);
+            }
+            else
+            {
+                timeline.TimelinePosTo(CreateAndPlaySequence.currentStep+1);
+            }
+        }
+    }
 
     private void OnMouseUpAsButton()
     {
@@ -21,6 +44,7 @@ public class PlayButton : MonoBehaviour
         SpriteRenderer spriteRenderer = (SpriteRenderer)GetComponent<Renderer>();
         if (isPlay)
         {
+            
             //wipe the current puck list
             CreateAndPlaySequence.ClearAllPitches();
             //Get all of the grids

@@ -32,18 +32,21 @@ public class TimingGrid : MonoBehaviour
                         } 
                 }
 
-        
                 //track the pucks so that they stay locked to the same gridspace until moved
                 foreach (var puck in Sprites)
                 {
-                        if (puck.name!="Move")
+                        if (puck == null)
+                        {
+                                Sprites.Remove(puck);
+                                break;
+                        }
+                        else if (puck.name!="Move")
                         {
                                 Vector3 BodyLocation = new Vector3(CurrXPos-4.86f, puck.transform.position.y, 7);
                                 puck.transform.position = BodyLocation;   
                         }
              
                 }
-
         
         }
 

@@ -112,7 +112,7 @@ public class Stepp : MonoBehaviour
 	/** Current Step
 	 *	The current step that the sequencer is on.
 	 */
-	private int currentStep;
+	public int currentStep;
 
 	/** Scheduler Steps Ahead
 	 *	The number of steps ahead that the sequencer schedules pitches to be
