@@ -10,7 +10,12 @@ public class MainMenu : MonoBehaviour
 	public Dropdown LearnDDown;
 	public Text CurrSig;
 	static int Tsig = 4;
-	
+
+	private void Start()
+	{
+		TimelinePositioning.TimeSig = 4;
+	}
+
 	public void Compose()
 	{
 	
@@ -18,13 +23,15 @@ public class MainMenu : MonoBehaviour
 		{
 			int TextSig = Int32.Parse(CurrSig.text);
 			Tsig = TextSig;
+			if(Tsig>0)
+				TimelinePositioning.TimeSig = Tsig;
 		}
 		catch (Exception)
 		{
 			
 		}
 
-		TimelinePositioning.TimeSig = Tsig;
+		
 		SceneManager.LoadScene(1);
 		Debug.Log(SceneManager.sceneCount);
 	}
