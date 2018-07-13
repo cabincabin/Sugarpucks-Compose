@@ -11,7 +11,7 @@ public class TimelinePositioning : MonoBehaviour{
     private Vector3 TimelineOffset;
     public float lenOfTimelineSeg = 1.4f;
     private int segmentsPerScreen = 11;
-    public int TimeSig;
+    public static int TimeSig;
     public GameObject P1;
     public GameObject P4;
     public GameObject PX;
@@ -23,7 +23,7 @@ public class TimelinePositioning : MonoBehaviour{
     private float AddMesureDefaultPosition;
 
 
-    void Start ()
+    void Awake()
     {
         //fill at least 1 screen worth with mesures.
 //        if (measures < segmentsPerScreen)
