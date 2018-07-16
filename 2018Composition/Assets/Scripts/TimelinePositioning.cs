@@ -11,7 +11,7 @@ public class TimelinePositioning : MonoBehaviour{
     private Vector3 TimelineOffset;
     public float lenOfTimelineSeg = 1.4f;
     private int segmentsPerScreen = 11;
-    public static int TimeSig;
+    public static int TimeSig = 4;
     public GameObject P1;
     public GameObject P4;
     public GameObject PX;
@@ -21,7 +21,6 @@ public class TimelinePositioning : MonoBehaviour{
     public List<GameObject> TimingGrids;
     private List<float> TimingGridDefaultLocation;
     private float AddMesureDefaultPosition;
-
 
     void Awake()
     {
@@ -43,8 +42,11 @@ public class TimelinePositioning : MonoBehaviour{
             //place each grid after the previous grid with 0 rotation
             GameObject NextGrid = Instantiate(Grid, new Vector3(lenOfTimelineSeg * GridIndex, 0f, 10f),
                 Quaternion.identity);
-            if(GridIndex%TimeSig!=0)
-                NextGrid.transform.localScale = new Vector3(NextGrid.transform.localScale.x,NextGrid.transform.localScale.y*.8f,NextGrid.transform.localScale.z);
+            if(GridIndex%TimeSig!=0){
+                NextGrid.transform.localScale = new Vector3(NextGrid.transform.localScale.x,NextGrid.transform.localScale.y*.7f,NextGrid.transform.localScale.z);
+                if(GridIndex%2==0 && TimeSig%2==0)
+                    NextGrid.transform.localScale = new Vector3(NextGrid.transform.localScale.x,NextGrid.transform.localScale.y*.8f,NextGrid.transform.localScale.z);
+            }
             TimingGrids.Add(NextGrid);
             NextGrid.GetComponent<TimingGrid>().BeatNum = GridIndex % TimeSig;
             //get the default location through simple multiplication

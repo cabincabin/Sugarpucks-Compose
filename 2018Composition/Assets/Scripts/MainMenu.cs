@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
 
 	public void Compose()
 	{
-	
+		
 		try
 		{
 			int TextSig = Int32.Parse(CurrSig.text);
@@ -30,8 +30,6 @@ public class MainMenu : MonoBehaviour
 		{
 			
 		}
-
-		
 		SceneManager.LoadScene(1);
 		Debug.Log(SceneManager.sceneCount);
 	}
@@ -40,6 +38,32 @@ public class MainMenu : MonoBehaviour
 	{
 		
 		if(LearnDDown.value !=0)
+			switch (LearnDDown.value)
+			{
+				case 1:
+					Debug.Log("GHejhv");
+					TimelinePositioning.TimeSig = 4;
+					break;
+				case 2:
+					TimelinePositioning.TimeSig = 8;
+					break;
+				case 3:
+					TimelinePositioning.TimeSig = 16;
+					break;
+				case 4:
+					Debug.Log("1111111111");
+					TimelinePositioning.TimeSig = 4;
+					break;
+				case 5:
+					TimelinePositioning.TimeSig = 6;
+					break;
+				case 6:
+					TimelinePositioning.TimeSig = 12;
+					break;
+				case 7:
+					TimelinePositioning.TimeSig = 20;
+					break;
+			}
 			SceneManager.LoadScene(LearnDDown.value+1);
 	}
 

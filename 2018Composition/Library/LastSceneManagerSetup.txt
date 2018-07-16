@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Plugins/Main Menu.unity
+- path: Assets/CompositionToolTwinkle.unity
   isLoaded: 1
   isActive: 1
