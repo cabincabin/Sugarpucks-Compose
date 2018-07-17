@@ -25,12 +25,18 @@ public class Key : MonoBehaviour
     //do not touch
     public List<int> NumInKey;
     public List<GameObject> VisualSteps;
+    //if this is extended further, visual steps will cause problems with garbage collection, as currently, each time
+    //a new key is chosen, none of the previous step sprites are deleated, they are just turned off, and new ones are created
+    //whoops
 
     private void Start()
     {
-        foreach (var step in VisualSteps)
+        if (VisualSteps != null)
         {
-            step.GetComponent<SpriteRenderer>().enabled = false;
+            foreach (var step in VisualSteps)
+            {
+                step.GetComponent<SpriteRenderer>().enabled = false;
+            }
         }
     }
 
@@ -49,6 +55,14 @@ public class Key : MonoBehaviour
         //if a key can be and is chosen
         if (CanChooseKey)
         {
+            if (VisualSteps != null)
+            {
+                foreach (var step in VisualSteps)
+                {
+                    step.GetComponent<SpriteRenderer>().enabled = false;
+                }
+            }
+
             //show that a key has been choosen
             hasKey = true;
             NumInKey = new List<int>
@@ -68,40 +82,51 @@ public class Key : MonoBehaviour
                 PianoPucks[NumInKey[numIndex]].transform.position = new Vector3(defaultx + 1f,  PianoPucks[NumInKey[numIndex]].transform.position.y,  PianoPucks[NumInKey[numIndex]].transform.position.z);
                 PianoPucks[NumInKey[numIndex]].GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 
-                if (NumInKey[numIndex] > NumInKey[(numIndex + 1) % NumInKey.Count])
-                {
-                    if (numIndex == 2 || numIndex == 6)
+        
+                 if(VisualSteps!=null){
+                    if (NumInKey[numIndex] > NumInKey[(numIndex + 1) % NumInKey.Count])
                     {
-                        GameObject Step = VisualSteps[2];
+                        if (numIndex == 2 || numIndex == 6)
+                        {
+                            GameObject Step = Instantiate(VisualSteps[2]);
+                            VisualSteps.Add(Step);
+                            Step.GetComponent<SpriteRenderer>().enabled = true;
+                            Vector3 StepPos = Step.transform.position;
+                            Step.transform.position = new Vector3(StepPos.x + 1f,
+                                StepPos.y - (PianoPucks[PianoPucks.Count - 1].transform.position.y -
+                                             PianoPucks[NumInKey[numIndex]].transform.position.y), StepPos.z);
+                        }
+                        else
+                        {
+                            GameObject Step = Instantiate(VisualSteps[3]);
+                            VisualSteps.Add(Step);
+                            Step.GetComponent<SpriteRenderer>().enabled = true;
+                            Vector3 StepPos = Step.transform.position;
+                            Step.transform.position = new Vector3(StepPos.x + 1f,
+                                StepPos.y - (PianoPucks[PianoPucks.Count - 1].transform.position.y -
+                                             PianoPucks[NumInKey[numIndex]].transform.position.y), StepPos.z);
+                        }
+                    }
+                    else if (numIndex == 2 || numIndex == 6)
+                    {
+                        GameObject Step = Instantiate(VisualSteps[0]);
+                        VisualSteps.Add(Step);
                         Step.GetComponent<SpriteRenderer>().enabled = true;
                         Vector3 StepPos = Step.transform.position;
-                        Step.transform.position = new Vector3(StepPos.x + 1f, 
-                            StepPos.y - (PianoPucks[PianoPucks.Count-1].transform.position.y - PianoPucks[NumInKey[numIndex]].transform.position.y), StepPos.z); 
+                        Step.transform.position = new Vector3(StepPos.x + 1f,
+                            StepPos.y + (PianoPucks[NumInKey[numIndex]].transform.position.y -
+                                         PianoPucks[0].transform.position.y), StepPos.z);
                     }
                     else
                     {
-                        GameObject Step = VisualSteps[3];
+                        GameObject Step = Instantiate(VisualSteps[1]);
+                        VisualSteps.Add(Step);
                         Step.GetComponent<SpriteRenderer>().enabled = true;
                         Vector3 StepPos = Step.transform.position;
-                        Step.transform.position = new Vector3(StepPos.x + 1f, 
-                            StepPos.y - (PianoPucks[PianoPucks.Count-1].transform.position.y - PianoPucks[NumInKey[numIndex]].transform.position.y), StepPos.z); 
+                        Step.transform.position = new Vector3(StepPos.x + 1f,
+                            StepPos.y + (PianoPucks[NumInKey[numIndex]].transform.position.y -
+                                         PianoPucks[0].transform.position.y), StepPos.z);
                     }
-                }    
-                else if (numIndex == 2 || numIndex == 6)
-                {
-                    GameObject Step = Instantiate(VisualSteps[0]);
-                    Step.GetComponent<SpriteRenderer>().enabled = true;
-                    Vector3 StepPos = Step.transform.position;
-                    Step.transform.position = new Vector3(StepPos.x + 1f, 
-                        StepPos.y + (PianoPucks[NumInKey[numIndex]].transform.position.y - PianoPucks[0].transform.position.y), StepPos.z);
-                }
-                else
-                {
-                    GameObject Step = Instantiate(VisualSteps[1]);
-                    Step.GetComponent<SpriteRenderer>().enabled = true;
-                    Vector3 StepPos = Step.transform.position;
-                    Step.transform.position = new Vector3(StepPos.x + 1f, 
-                        StepPos.y + (PianoPucks[NumInKey[numIndex]].transform.position.y - PianoPucks[0].transform.position.y), StepPos.z);   
                 }
             }
             //shift first puck over
