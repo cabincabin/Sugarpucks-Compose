@@ -55,6 +55,7 @@ public class Key : MonoBehaviour
             {
                 KeyNum, (KeyNum+2)%12, (KeyNum+4)%12, (KeyNum+5)%12, (KeyNum+7)%12, (KeyNum+9)%12, (KeyNum+11)%12
             };
+
             //reset position of all pucks
             foreach (var Puck in PianoPucks)
             {
@@ -67,7 +68,26 @@ public class Key : MonoBehaviour
                 PianoPucks[NumInKey[numIndex]].transform.position = new Vector3(defaultx + 1f,  PianoPucks[NumInKey[numIndex]].transform.position.y,  PianoPucks[NumInKey[numIndex]].transform.position.z);
                 PianoPucks[NumInKey[numIndex]].GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 
-                if (numIndex == 2 || numIndex == 6)
+                if (NumInKey[numIndex] > NumInKey[(numIndex + 1) % NumInKey.Count])
+                {
+                    if (numIndex == 2 || numIndex == 6)
+                    {
+                        GameObject Step = VisualSteps[2];
+                        Step.GetComponent<SpriteRenderer>().enabled = true;
+                        Vector3 StepPos = Step.transform.position;
+                        Step.transform.position = new Vector3(StepPos.x + 1f, 
+                            StepPos.y - (PianoPucks[PianoPucks.Count-1].transform.position.y - PianoPucks[NumInKey[numIndex]].transform.position.y), StepPos.z); 
+                    }
+                    else
+                    {
+                        GameObject Step = VisualSteps[3];
+                        Step.GetComponent<SpriteRenderer>().enabled = true;
+                        Vector3 StepPos = Step.transform.position;
+                        Step.transform.position = new Vector3(StepPos.x + 1f, 
+                            StepPos.y - (PianoPucks[PianoPucks.Count-1].transform.position.y - PianoPucks[NumInKey[numIndex]].transform.position.y), StepPos.z); 
+                    }
+                }    
+                else if (numIndex == 2 || numIndex == 6)
                 {
                     GameObject Step = Instantiate(VisualSteps[0]);
                     Step.GetComponent<SpriteRenderer>().enabled = true;
