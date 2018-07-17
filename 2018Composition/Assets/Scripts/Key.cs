@@ -31,7 +31,7 @@ public class Key : MonoBehaviour
 
     private void Start()
     {
-        if (VisualSteps != null)
+        if (VisualSteps.Count != 0)
         {
             foreach (var step in VisualSteps)
             {
@@ -55,7 +55,9 @@ public class Key : MonoBehaviour
         //if a key can be and is chosen
         if (CanChooseKey)
         {
-            if (VisualSteps != null)
+
+
+            if (VisualSteps.Count != 0)
             {
                 foreach (var step in VisualSteps)
                 {
@@ -83,7 +85,7 @@ public class Key : MonoBehaviour
                 PianoPucks[NumInKey[numIndex]].GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 
         
-                 if(VisualSteps!=null){
+                 if(VisualSteps.Count != 0){
                     if (NumInKey[numIndex] > NumInKey[(numIndex + 1) % NumInKey.Count])
                     {
                         if (numIndex == 2 || numIndex == 6)
@@ -137,6 +139,19 @@ public class Key : MonoBehaviour
             //render keyname
             spriteRenderer.sprite = KeyIcon[KeyNum+1];
             PianoContact.destroyAll = true;
+        }
+    }
+
+    public void ClearAllPuckChordLines()
+    {
+        foreach (var Puck in PianoPucks)
+        {
+            foreach (var Puckline in Puck.GetComponent<PianoRollPuck>().VisualSteps)
+            {
+                Puckline.GetComponent<SpriteRenderer>().enabled = false;
+            }
+
+                
         }
     }
 }

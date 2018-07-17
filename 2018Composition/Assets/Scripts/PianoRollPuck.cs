@@ -18,7 +18,21 @@ public class PianoRollPuck : MonoBehaviour{
     private bool wiggleRight;
     private TimingGrid lastGrid;
     private int SpritesInLastGrid=0;
-     
+    public float ZeroPos;
+    public float TopPos;
+    public List<GameObject> VisualSteps;
+    
+    private void Start()
+    {
+        if (VisualSteps != null)
+        {
+            foreach (var step in VisualSteps)
+            {
+                step.GetComponent<SpriteRenderer>().enabled = false;
+            }
+        }
+    }
+    
     private void Update()
     {
         if (Keychanger != null)
@@ -114,6 +128,52 @@ public class PianoRollPuck : MonoBehaviour{
                          PlaySprite.GetComponent<PlayableSprite>().PitchNumber % 12)
                      {
                          CanWiggle = true;
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                         Keychanger.ClearAllPuckChordLines();
+                         
+                         if ( Keychanger.NumInKey[(keyNumIndex) % Keychanger.NumInKey.Count] >  Keychanger.NumInKey[(keyNumIndex + 2) % Keychanger.NumInKey.Count])
+                         {
+                             if ((keyNumIndex + 2) % Keychanger.NumInKey.Count == 3 ||(keyNumIndex + 2) % Keychanger.NumInKey.Count == 0)
+                             {
+                                 GameObject Step = Instantiate(VisualSteps[2]);
+                                 VisualSteps.Add(Step);
+                                 Step.GetComponent<SpriteRenderer>().enabled = true;
+                                 Vector3 StepPos = Step.transform.position;
+                                 Step.transform.position = new Vector3(StepPos.x + 1f,
+                                     StepPos.y - (TopPos - transform.position.y), StepPos.z);
+                             }
+                             else
+                             {
+                                 GameObject Step = Instantiate(VisualSteps[3]);
+                                 VisualSteps.Add(Step);
+                                 Step.GetComponent<SpriteRenderer>().enabled = true;
+                                 Vector3 StepPos = Step.transform.position;
+                                 Step.transform.position = new Vector3(StepPos.x + 1f,
+                                     StepPos.y - (TopPos - transform.position.y), StepPos.z);
+                             }
+                         }
+                         else if ((keyNumIndex + 2) % Keychanger.NumInKey.Count == 3 ||(keyNumIndex + 2) % Keychanger.NumInKey.Count == 0)
+                         {
+                             GameObject Step = Instantiate(VisualSteps[0]);
+                             VisualSteps.Add(Step);
+                             Step.GetComponent<SpriteRenderer>().enabled = true;
+                             Vector3 StepPos = Step.transform.position;
+                             Step.transform.position = new Vector3(StepPos.x + 1f,
+                                 StepPos.y + (transform.position.y -
+                                              ZeroPos), StepPos.z);
+                         }
+                         else
+                         {
+                             GameObject Step = Instantiate(VisualSteps[1]);
+                             VisualSteps.Add(Step);
+                             Step.GetComponent<SpriteRenderer>().enabled = true;
+                             Vector3 StepPos = Step.transform.position;
+                             Step.transform.position = new Vector3(StepPos.x + 1f,
+                                 StepPos.y + (transform.position.y -
+                                              ZeroPos), StepPos.z);  
+                         }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
                      }
                  }
                  
@@ -180,6 +240,7 @@ public class PianoRollPuck : MonoBehaviour{
         audio.clip = pitch;
         audio.Play();
     }
+
 
     
 }
