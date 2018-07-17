@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System;
 using JetBrains.Annotations;
+using UnityEngine.Assertions.Must;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class Key : MonoBehaviour
@@ -23,9 +24,15 @@ public class Key : MonoBehaviour
     private bool CanChooseKey;
     //do not touch
     public List<int> NumInKey;
-    
-    
+    public List<GameObject> VisualSteps;
 
+    private void Start()
+    {
+        foreach (var step in VisualSteps)
+        {
+            step.GetComponent<SpriteRenderer>().enabled = false;
+        }
+    }
 
     //when selected allow for key change
     private void OnMouseUpAsButton()
@@ -55,10 +62,27 @@ public class Key : MonoBehaviour
                 Puck.GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.3f);
             }
 
-            foreach (var Num in NumInKey)
+            for(int numIndex = 0; numIndex<NumInKey.Count; numIndex++)
             {
-                PianoPucks[Num].transform.position = new Vector3(defaultx + 1f,  PianoPucks[Num].transform.position.y,  PianoPucks[Num].transform.position.z);
-                PianoPucks[Num].GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                PianoPucks[NumInKey[numIndex]].transform.position = new Vector3(defaultx + 1f,  PianoPucks[NumInKey[numIndex]].transform.position.y,  PianoPucks[NumInKey[numIndex]].transform.position.z);
+                PianoPucks[NumInKey[numIndex]].GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+
+                if (numIndex == 2 || numIndex == 6)
+                {
+                    GameObject Step = Instantiate(VisualSteps[0]);
+                    Step.GetComponent<SpriteRenderer>().enabled = true;
+                    Vector3 StepPos = Step.transform.position;
+                    Step.transform.position = new Vector3(StepPos.x + 1f, 
+                        StepPos.y + (PianoPucks[NumInKey[numIndex]].transform.position.y - PianoPucks[0].transform.position.y), StepPos.z);
+                }
+                else
+                {
+                    GameObject Step = Instantiate(VisualSteps[1]);
+                    Step.GetComponent<SpriteRenderer>().enabled = true;
+                    Vector3 StepPos = Step.transform.position;
+                    Step.transform.position = new Vector3(StepPos.x + 1f, 
+                        StepPos.y + (PianoPucks[NumInKey[numIndex]].transform.position.y - PianoPucks[0].transform.position.y), StepPos.z);   
+                }
             }
             //shift first puck over
            
