@@ -77,6 +77,7 @@ public class PianoRollPuck : MonoBehaviour{
     }
 
     //this is a long one and should be broken into helpers
+    //convert whats between the ///////// to helper
     private void RecomendChord()
          {
             
@@ -133,7 +134,7 @@ public class PianoRollPuck : MonoBehaviour{
                          
                          if ( Keychanger.NumInKey[(keyNumIndex) % Keychanger.NumInKey.Count] >  Keychanger.NumInKey[(keyNumIndex + 2) % Keychanger.NumInKey.Count])
                          {
-                             if ((keyNumIndex + 2) % Keychanger.NumInKey.Count == 3 ||(keyNumIndex + 2) % Keychanger.NumInKey.Count == 0)
+                             if ((keyNumIndex + 2) % Keychanger.NumInKey.Count == 4 || (keyNumIndex + 2) % Keychanger.NumInKey.Count == 1 || (keyNumIndex + 2) % Keychanger.NumInKey.Count == 3 ||(keyNumIndex + 2) % Keychanger.NumInKey.Count == 0)
                              {
                                  GameObject Step = Instantiate(VisualSteps[2]);
                                  VisualSteps.Add(Step);
@@ -152,7 +153,7 @@ public class PianoRollPuck : MonoBehaviour{
                                      StepPos.y - (TopPos - transform.position.y), StepPos.z);
                              }
                          }
-                         else if ((keyNumIndex + 2) % Keychanger.NumInKey.Count == 3 ||(keyNumIndex + 2) % Keychanger.NumInKey.Count == 0)
+                         else if ((keyNumIndex + 2) % Keychanger.NumInKey.Count == 4 || (keyNumIndex + 2) % Keychanger.NumInKey.Count == 1 ||(keyNumIndex + 2) % Keychanger.NumInKey.Count == 3 ||(keyNumIndex + 2) % Keychanger.NumInKey.Count == 0)
                          {
                              GameObject Step = Instantiate(VisualSteps[0]);
                              VisualSteps.Add(Step);
@@ -211,6 +212,51 @@ public class PianoRollPuck : MonoBehaviour{
                                  PlaySprite.GetComponent<PlayableSprite>().PitchNumber % 12)
                              {
                                  CanWiggle = true;
+                                 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                             
+                             if ( Keychanger.NumInKey[(keyNumIndex2) % Keychanger.NumInKey.Count] >  Keychanger.NumInKey[(keyNumIndex2 + 2) % Keychanger.NumInKey.Count])
+                             {
+                                 if ((keyNumIndex2 + 2) % Keychanger.NumInKey.Count == 4 || (keyNumIndex2 + 2) % Keychanger.NumInKey.Count == 1 || (keyNumIndex2 + 2) % Keychanger.NumInKey.Count == 3 ||(keyNumIndex2 + 2) % Keychanger.NumInKey.Count == 0)
+                                 {
+                                     GameObject Step = Instantiate(VisualSteps[2]);
+                                     VisualSteps.Add(Step);
+                                     Step.GetComponent<SpriteRenderer>().enabled = true;
+                                     Vector3 StepPos = Step.transform.position;
+                                     Step.transform.position = new Vector3(StepPos.x + 1f,
+                                         StepPos.y - (TopPos - transform.position.y), StepPos.z);
+                                 }
+                                 else
+                                 {
+                                     GameObject Step = Instantiate(VisualSteps[3]);
+                                     VisualSteps.Add(Step);
+                                     Step.GetComponent<SpriteRenderer>().enabled = true;
+                                     Vector3 StepPos = Step.transform.position;
+                                     Step.transform.position = new Vector3(StepPos.x + 1f,
+                                         StepPos.y - (TopPos - transform.position.y), StepPos.z);
+                                 }
+                             }
+                             else if ((keyNumIndex2 + 2) % Keychanger.NumInKey.Count == 4 || (keyNumIndex2 + 2) % Keychanger.NumInKey.Count == 1 ||(keyNumIndex2 + 2) % Keychanger.NumInKey.Count == 3 ||(keyNumIndex2 + 2) % Keychanger.NumInKey.Count == 0)
+                             {
+                                 GameObject Step = Instantiate(VisualSteps[0]);
+                                 VisualSteps.Add(Step);
+                                 Step.GetComponent<SpriteRenderer>().enabled = true;
+                                 Vector3 StepPos = Step.transform.position;
+                                 Step.transform.position = new Vector3(StepPos.x + 1f,
+                                     StepPos.y + (transform.position.y -
+                                                  ZeroPos), StepPos.z);
+                             }
+                             else
+                             {
+                                 GameObject Step = Instantiate(VisualSteps[1]);
+                                 VisualSteps.Add(Step);
+                                 Step.GetComponent<SpriteRenderer>().enabled = true;
+                                 Vector3 StepPos = Step.transform.position;
+                                 Step.transform.position = new Vector3(StepPos.x + 1f,
+                                     StepPos.y + (transform.position.y -
+                                                  ZeroPos), StepPos.z);  
+                             }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                              }
                          }
                          //assess if the second index is the base of the triad
@@ -221,6 +267,50 @@ public class PianoRollPuck : MonoBehaviour{
                                  PlaySprite.GetComponent<PlayableSprite>().PitchNumber % 12)
                              {
                                  CanWiggle = true;
+                                 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                 if ( Keychanger.NumInKey[(keyNumIndex1) % Keychanger.NumInKey.Count] >  Keychanger.NumInKey[(keyNumIndex1 + 2) % Keychanger.NumInKey.Count])
+                                 {
+                                     if ((keyNumIndex1 + 2) % Keychanger.NumInKey.Count == 4 || (keyNumIndex1 + 2) % Keychanger.NumInKey.Count == 1 || (keyNumIndex1 + 2) % Keychanger.NumInKey.Count == 3 ||(keyNumIndex1 + 2) % Keychanger.NumInKey.Count == 0)
+                                     {
+                                         GameObject Step = Instantiate(VisualSteps[2]);
+                                         VisualSteps.Add(Step);
+                                         Step.GetComponent<SpriteRenderer>().enabled = true;
+                                         Vector3 StepPos = Step.transform.position;
+                                         Step.transform.position = new Vector3(StepPos.x + 1f,
+                                             StepPos.y - (TopPos - transform.position.y), StepPos.z);
+                                     }
+                                     else
+                                     {
+                                         GameObject Step = Instantiate(VisualSteps[3]);
+                                         VisualSteps.Add(Step);
+                                         Step.GetComponent<SpriteRenderer>().enabled = true;
+                                         Vector3 StepPos = Step.transform.position;
+                                         Step.transform.position = new Vector3(StepPos.x + 1f,
+                                             StepPos.y - (TopPos - transform.position.y), StepPos.z);
+                                     }
+                                 }
+                                 else if ((keyNumIndex1 + 2) % Keychanger.NumInKey.Count == 4 || (keyNumIndex1 + 2) % Keychanger.NumInKey.Count == 1 ||(keyNumIndex1 + 2) % Keychanger.NumInKey.Count == 3 ||(keyNumIndex1 + 2) % Keychanger.NumInKey.Count == 0)
+                                 {
+                                     GameObject Step = Instantiate(VisualSteps[0]);
+                                     VisualSteps.Add(Step);
+                                     Step.GetComponent<SpriteRenderer>().enabled = true;
+                                     Vector3 StepPos = Step.transform.position;
+                                     Step.transform.position = new Vector3(StepPos.x + 1f,
+                                         StepPos.y + (transform.position.y -
+                                                      ZeroPos), StepPos.z);
+                                 }
+                                 else
+                                 {
+                                     GameObject Step = Instantiate(VisualSteps[1]);
+                                     VisualSteps.Add(Step);
+                                     Step.GetComponent<SpriteRenderer>().enabled = true;
+                                     Vector3 StepPos = Step.transform.position;
+                                     Step.transform.position = new Vector3(StepPos.x + 1f,
+                                         StepPos.y + (transform.position.y -
+                                                      ZeroPos), StepPos.z);  
+                                 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                              }
                          }
                      }

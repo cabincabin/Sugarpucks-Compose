@@ -55,7 +55,7 @@ public class Key : MonoBehaviour
         //if a key can be and is chosen
         if (CanChooseKey)
         {
-
+            ClearAllPuckChordLines();
 
             if (VisualSteps.Count != 0)
             {
@@ -130,6 +130,16 @@ public class Key : MonoBehaviour
                                          PianoPucks[0].transform.position.y), StepPos.z);
                     }
                 }
+                if (numIndex == 0)
+                 { GameObject Step = Instantiate(VisualSteps[4]);
+                     VisualSteps.Add(Step);
+                     Step.GetComponent<SpriteRenderer>().enabled = true;
+                     Vector3 StepPos = Step.transform.position;
+                     Step.transform.position = new Vector3(StepPos.x + 1f,
+                         StepPos.y + (PianoPucks[NumInKey[numIndex]].transform.position.y -
+                                      PianoPucks[0].transform.position.y), StepPos.z);
+                     
+                 }
             }
             //shift first puck over
            
