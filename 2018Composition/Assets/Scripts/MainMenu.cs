@@ -51,8 +51,7 @@ public class MainMenu : MonoBehaviour
 					TimelinePositioning.TimeSig = 16;
 					break;
 				case 4:
-					Debug.Log("1111111111");
-					TimelinePositioning.TimeSig = 4;
+					TimelinePositioning.TimeSig = 16;
 					break;
 				case 5:
 					TimelinePositioning.TimeSig = 6;

@@ -58,6 +58,7 @@
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\PianoRollPuck.cs" />
     <Compile Include="Assets\Scripts\PlayButton.cs" />
+    <Compile Include="Assets\Scripts\PlayButtonMelody.cs" />
     <Compile Include="Assets\Scripts\PlayableSprite.cs" />
     <Compile Include="Assets\Scripts\RhythmPlay1.cs" />
     <Compile Include="Assets\Scripts\RhythmPlayPoly.cs" />

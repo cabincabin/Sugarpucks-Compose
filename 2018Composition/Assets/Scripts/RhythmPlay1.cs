@@ -74,6 +74,8 @@ public class RhythmPlay1 : MonoBehaviour
         }
     }
 
+
+    
     private void OnMouseUpAsButton()
     {
         if(firstPlay){

@@ -15,8 +15,29 @@ public class RhythmPlayPoly : MonoBehaviour
     public int UpperPoly;
     public int LowerPoly;
 
+    public GameObject PlayPos;
+   
+    private void Update()
+    {
+        if (isPlay)
+        {
+            PlayPos.GetComponent<SpriteRenderer>().enabled = true;
+            if (CreateAndPlaySequence.currentStep<11)
+            {
+                timeline.TimelinePosTo(0);
+                PlayPos.transform.position = new Vector3((CreateAndPlaySequence.currentStep)*timeline.lenOfTimelineSeg,PlayPos.transform.position.y,PlayPos.transform.position.z);
+            }
+            else
+            {
+                timeline.TimelinePosTo(CreateAndPlaySequence.currentStep+1);
+            }
+        }
+    }
+
+   
     private void Start()
     {
+        PlayPos.GetComponent<SpriteRenderer>().enabled = false;
         FirstPuck.GetComponent<PlayableSprite>().PitchNumber = UpperPoly;
         SecondPuck.GetComponent<PlayableSprite>().PitchNumber = LowerPoly;
 
