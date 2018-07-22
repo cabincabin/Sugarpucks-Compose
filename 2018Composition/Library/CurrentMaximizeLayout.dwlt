@@ -20,10 +20,10 @@ MonoBehaviour:
     y: 30
     width: 1458
     height: 771
-  m_MinSize: {x: 679, y: 321}
-  m_MaxSize: {x: 12004, y: 8021}
+  m_MinSize: {x: 681, y: 471}
+  m_MaxSize: {x: 14000, y: 14021}
   vertical: 0
-  controlID: 19932
+  controlID: 24728
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -120,10 +120,10 @@ MonoBehaviour:
     y: 0
     width: 1031
     height: 771
-  m_MinSize: {x: 404, y: 321}
-  m_MaxSize: {x: 8004, y: 8021}
+  m_MinSize: {x: 406, y: 471}
+  m_MaxSize: {x: 10000, y: 14021}
   vertical: 1
-  controlID: 19933
+  controlID: 24729
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,10 +144,10 @@ MonoBehaviour:
     y: 0
     width: 1031
     height: 452
-  m_MinSize: {x: 404, y: 221}
-  m_MaxSize: {x: 8004, y: 4021}
+  m_MinSize: {x: 406, y: 221}
+  m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 19912
+  controlID: 24730
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,8 +166,8 @@ MonoBehaviour:
     y: 0
     width: 216
     height: 452
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -201,9 +201,9 @@ MonoBehaviour:
     height: 431
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 74b50000f0b4000040b50000d8b3000040b40000a8b3000074b40000a0b400004eb4000094b300001cb4000070b30000
-    m_LastClickedID: 46040
-    m_ExpandedIDs: bc7afbffcec1fbff98c8fbff1ec9fbff2603fcff1013fcff8e13fcff424afcff9e52fcff3077fcff3080fcff1aaffcff1eb1fcff4ed2fcff5ad9fcff5805fdffb40bfdff723bfdff9c40fdffaa77fdff6480fdff1c24feffa83bffffa8f9ffffe6fbffff00000000942d0000fe2d0000822e0000922e0000d22e0000c84e0000324f0000c64f0000065000000867000078670000fc6700000c68000032740000427400002477000034770000627f0000727f00001e8400002e840000d88800000889000018890000348d0000368e0000768e0000869200008a920000c6920000e49200007c93000080930000b0930000c0930000dc930000e0930000949a0000c49a0000d49a000026a70000c4a70000eca700000aa8000094ae000070b40000feb400000eb5000054b50000
+    m_SelectedIDs: 4c0d0100
+    m_LastClickedID: 68940
+    m_ExpandedIDs: 66ddfaff46e6faff1ce7faff960bfbfff05afbffa864fbffe86bfbffb06cfbff086efbff106efbff146efbff186efbff1e6efbff226efbff266efbff2a6efbff306efbff506efbff546efbffbc7afbffcec1fbff98c8fbff1ec9fbff2603fcff1013fcff8e13fcff424afcff9e52fcff3077fcff3080fcff1aaffcff1eb1fcff4ed2fcff5ad9fcff5805fdffb40bfdff723bfdff9c40fdffaa77fdff6480fdff1c24feffa83bffffa8f9ffffe6fbffff00000000942d0000fe2d0000822e0000922e0000d22e0000c84e0000324f0000c64f0000065000000867000078670000fc6700000c68000032740000427400002477000034770000627f0000727f00001e8400002e840000d88800000889000018890000348d0000368e0000768e0000869200008a920000c6920000e49200007c93000080930000b0930000c0930000dc930000e0930000949a0000c49a0000d49a000026a70000c4a70000eca700000aa8000094ae000070b40000feb400000eb5000054b5000010bc000024bc000066d4000004d500002cd500004ad50000fcd600002ed7000070d700007ad70000c2fd000050fe000060fe0000a6fe0000e80c0100f20c01008c0d0100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -315,9 +315,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 12.450707
+    m_Target: 12.214757
     speed: 2
-    m_Value: 12.450707
+    m_Value: 12.214757
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -415,14 +415,14 @@ MonoBehaviour:
     y: 452
     width: 1031
     height: 319
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 13}
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
+  m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
   - {fileID: 13}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -460,19 +460,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Textures/Rhythm&Rhyme
+    - Assets/Sounds/DembskiNotesMusicBox/Octive 2
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Textures/Rhythm&Rhyme
+  - Assets/Sounds/DembskiNotesMusicBox/Octive 2
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Clayton\Desktop\SUGARIQP\2018SmithDembskiCompositionTool\2d-notation\2018Composition
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 54290000
-    m_LastClickedID: 10580
-    m_ExpandedIDs: 00000000d2250000182700000629000054290000f02c0000ffffff7f
+    m_SelectedIDs: 1c290000
+    m_LastClickedID: 10524
+    m_ExpandedIDs: 00000000d225000018270000062900005429000080290000f02c0000ffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -500,7 +500,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d2250000182700000629000054290000f02c0000ffffff7f
+    m_ExpandedIDs: 00000000d225000018270000062900005429000080290000f02c0000ffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -525,8 +525,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: f0a70000
-    m_LastClickedInstanceID: 42992
+    m_SelectedInstanceIDs: 4c0d0100
+    m_LastClickedInstanceID: 68940
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: a0330000aa330000e81d0000ec1d0000bcd8ffff942300008e2f0000a428000098280000ac28000000000000102a00004c260000
     m_RenameOverlay:
@@ -552,7 +552,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 60}
+    m_ScrollPosition: {x: 0, y: 91}
     m_GridSize: 16
   m_DirectoriesAreaWidth: 230
 --- !u!114 &13
@@ -632,7 +632,7 @@ MonoBehaviour:
     y: 92
     width: 425
     height: 750
-  m_ScrollPosition: {x: 0, y: 0}
+  m_ScrollPosition: {x: 0, y: 158.95508}
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: 167
