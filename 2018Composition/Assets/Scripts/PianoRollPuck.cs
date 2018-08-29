@@ -24,6 +24,7 @@ public class PianoRollPuck : MonoBehaviour{
     
     private void Start()
     {
+        //make all the steps invisable to start
         if (VisualSteps != null)
         {
             foreach (var step in VisualSteps)
@@ -52,23 +53,28 @@ public class PianoRollPuck : MonoBehaviour{
     //if the puck should wiggle, wiggles the puck right and left at a medium speed to "suggest" the puck
     private void wiggle()
     {
+        //rotate left until some maximum
         if (!wiggleRight){
+            
             if(transform.rotation.eulerAngles.z < 45 || transform.rotation.eulerAngles.z > 300)
             {
                 transform.eulerAngles = new Vector3(0, 0, transform.rotation.eulerAngles.z + 3);
             }
+            //switch to rotating right
             else
             {
                 wiggleRight = true;
             }
         }
 
+        //rotate right to some maximum
         if (wiggleRight)
         {
             if (transform.rotation.eulerAngles.z > 315 || transform.rotation.eulerAngles.z < 60)
             {
                 transform.eulerAngles = new Vector3(0, 0, transform.rotation.eulerAngles.z - 3);
             }
+            //switch to rotating left
             else
             {
                 wiggleRight = false;
@@ -129,13 +135,32 @@ public class PianoRollPuck : MonoBehaviour{
                          PlaySprite.GetComponent<PlayableSprite>().PitchNumber % 12)
                      {
                          CanWiggle = true;
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//for each section of code between the left and right carrots,
+//The code is implemented for use in the lessons only. 
+//Each of these sections follow the same logic. 
+//and determins how far away the next note in the basic triad is,
+//either 3 or 4 steps away. As the notes are arranged linearly in one octave from A to G#
+//there may be wrapping, where the user goes back to the bottom of the list, requireing a longer indicator.
+//IE, a step from A to B would be up two pucks, yet a step from G# to A again would require moving down 12 pucks.
+//A smaller example, from A to E is as follows:
+//IE D to A instead of A to C
+//  e
+//|-d
+//| c<|   
+//| b |
+//|>a-|   
+                         
+                        //clear all chord indicators
                          Keychanger.ClearAllPuckChordLines();
                          
+                         //if the note wraps around, IE, if the next note in the chord is "below" the first note instead of 
+                         //above, use a long arrow to point to this next puck instead of a short arrow
                          if ( Keychanger.NumInKey[(keyNumIndex) % Keychanger.NumInKey.Count] >  Keychanger.NumInKey[(keyNumIndex + 2) % Keychanger.NumInKey.Count])
                          {
                              if ((keyNumIndex + 2) % Keychanger.NumInKey.Count == 4 || (keyNumIndex + 2) % Keychanger.NumInKey.Count == 1 || (keyNumIndex + 2) % Keychanger.NumInKey.Count == 3 ||(keyNumIndex + 2) % Keychanger.NumInKey.Count == 0)
                              {
+                                 //use a long 3 step arrow, the arrowhead pointing at,and starting from the new puck in the list
                                  GameObject Step = Instantiate(VisualSteps[2]);
                                  VisualSteps.Add(Step);
                                  Step.GetComponent<SpriteRenderer>().enabled = true;
@@ -145,6 +170,7 @@ public class PianoRollPuck : MonoBehaviour{
                              }
                              else
                              {
+                                 //use a long 4 step arrow, the arrowhead pointing at,and starting from the new puck in the list
                                  GameObject Step = Instantiate(VisualSteps[3]);
                                  VisualSteps.Add(Step);
                                  Step.GetComponent<SpriteRenderer>().enabled = true;
@@ -153,6 +179,7 @@ public class PianoRollPuck : MonoBehaviour{
                                      StepPos.y - (TopPos - transform.position.y), StepPos.z);
                              }
                          }
+                         //this puck is 3 steps above the previous note, no wrapping indicate it with the 3 step arrow
                          else if ((keyNumIndex + 2) % Keychanger.NumInKey.Count == 4 || (keyNumIndex + 2) % Keychanger.NumInKey.Count == 1 ||(keyNumIndex + 2) % Keychanger.NumInKey.Count == 3 ||(keyNumIndex + 2) % Keychanger.NumInKey.Count == 0)
                          {
                              GameObject Step = Instantiate(VisualSteps[0]);
@@ -163,7 +190,8 @@ public class PianoRollPuck : MonoBehaviour{
                                  StepPos.y + (transform.position.y -
                                               ZeroPos), StepPos.z);
                          }
-                         else
+                         //this puck is 4 steps above the previous note, no wrapping indicate it with the 3 step arrow
+                         else 
                          {
                              GameObject Step = Instantiate(VisualSteps[1]);
                              VisualSteps.Add(Step);
@@ -173,7 +201,7 @@ public class PianoRollPuck : MonoBehaviour{
                                  StepPos.y + (transform.position.y -
                                               ZeroPos), StepPos.z);  
                          }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
                      }
                  }
@@ -213,7 +241,7 @@ public class PianoRollPuck : MonoBehaviour{
                              {
                                  CanWiggle = true;
                                  
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                              
                              if ( Keychanger.NumInKey[(keyNumIndex2) % Keychanger.NumInKey.Count] >  Keychanger.NumInKey[(keyNumIndex2 + 2) % Keychanger.NumInKey.Count])
                              {
@@ -256,7 +284,7 @@ public class PianoRollPuck : MonoBehaviour{
                                      StepPos.y + (transform.position.y -
                                                   ZeroPos), StepPos.z);  
                              }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                              }
                          }
                          //assess if the second index is the base of the triad
@@ -268,7 +296,7 @@ public class PianoRollPuck : MonoBehaviour{
                              {
                                  CanWiggle = true;
                                  
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                                  if ( Keychanger.NumInKey[(keyNumIndex1) % Keychanger.NumInKey.Count] >  Keychanger.NumInKey[(keyNumIndex1 + 2) % Keychanger.NumInKey.Count])
                                  {
                                      if ((keyNumIndex1 + 2) % Keychanger.NumInKey.Count == 4 || (keyNumIndex1 + 2) % Keychanger.NumInKey.Count == 1 || (keyNumIndex1 + 2) % Keychanger.NumInKey.Count == 3 ||(keyNumIndex1 + 2) % Keychanger.NumInKey.Count == 0)
@@ -310,7 +338,7 @@ public class PianoRollPuck : MonoBehaviour{
                                          StepPos.y + (transform.position.y -
                                                       ZeroPos), StepPos.z);  
                                  }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                              }
                          }
                      }

@@ -6,6 +6,8 @@ public class SwitchBetweenTitles : MonoBehaviour
     private bool swap;
     private int c100;
     
+    //on update, switch between title one and two, for animation purposes
+    //Wait a period of time before switching again.
     private void Update()
     {
         if (c100 >= 50)

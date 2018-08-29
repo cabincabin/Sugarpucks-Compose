@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System;
 using JetBrains.Annotations;
+using NUnit.Framework.Constraints;
 using UnityEngine.Assertions.Must;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -31,10 +32,12 @@ public class Key : MonoBehaviour
 
     private void Start()
     {
+        //this is for the create a key section
         if (VisualSteps.Count != 0)
         {
             foreach (var step in VisualSteps)
             {
+                //make all the key steps invisable
                 step.GetComponent<SpriteRenderer>().enabled = false;
             }
         }
@@ -43,7 +46,10 @@ public class Key : MonoBehaviour
     //when selected allow for key change
     private void OnMouseUpAsButton()
     {
+        //Let the next note chosen determine the key
         CanChooseKey = true;
+        
+        //this should be moved to change skin
         SpriteRenderer spriteRenderer = (SpriteRenderer)GetComponent<Renderer>();
         //render word key
         spriteRenderer.sprite = KeyIcon[0];
@@ -55,8 +61,10 @@ public class Key : MonoBehaviour
         //if a key can be and is chosen
         if (CanChooseKey)
         {
+            //clears all line pointers for chords when a key is chosen in the LESSONS only
             ClearAllPuckChordLines();
 
+            //Hide all the step counts for the Key Steps Only 
             if (VisualSteps.Count != 0)
             {
                 foreach (var step in VisualSteps)
@@ -158,6 +166,7 @@ public class Key : MonoBehaviour
         {
             foreach (var Puckline in Puck.GetComponent<PianoRollPuck>().VisualSteps)
             {
+                //makes all chord indicators, for the lesson, invisable
                 Puckline.GetComponent<SpriteRenderer>().enabled = false;
             }
 

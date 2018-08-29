@@ -16,6 +16,7 @@ public class Tempo : MonoBehaviour
 
     private void Start()
     {
+        //start at the slowest tempo
         PlaySequenceTempo.tempo = MinTempo;
     }
 

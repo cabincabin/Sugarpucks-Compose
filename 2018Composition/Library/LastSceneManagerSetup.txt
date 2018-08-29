@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/CompositionToolTwinkle.unity
+- path: Assets/CompositionToolChords.unity
   isLoaded: 1
   isActive: 1

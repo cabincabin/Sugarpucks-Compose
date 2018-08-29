@@ -20,16 +20,20 @@ public class PlayableSprite : MonoBehaviour
 
      public void ChangePitchUpDown()
      {
+         //if double clicked for the first time
          if (PitchNumber / 12f < 1)
          {
+             //raise the pitch used up by an octive
              PitchNumber = PitchNumber + 12;
              CurrScale = new Vector3(-.25f, .3f, 1f);
              transform.localScale = CurrScale;
              transform.eulerAngles = new Vector3(0, 0, 292.5f);
              
          }
+         //if double clicked for a second time
          else
          {
+             //lower the pitch back to the original pitch
              PitchNumber = PitchNumber - 12;
              CurrScale = new Vector3(-.3f, .25f, 1f);
              transform.localScale = CurrScale;

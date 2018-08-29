@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 //each grid is a note to be added to the STEP cs file
 public class TimingGrid : MonoBehaviour
@@ -22,6 +23,8 @@ public class TimingGrid : MonoBehaviour
                 //detect and add any new sugar pucks in the column of the given grid/beat
                 foreach (var other in collideObjects)
                 {
+                        //check and make sure that the puck is only grabbed when dropped onto the grid
+                        //not while the user is moving it
                         if (other.gameObject.name=="PlayPuck" && !Sprites.Contains(other))
                         {
                                 Sprites.Add(other);
@@ -42,6 +45,8 @@ public class TimingGrid : MonoBehaviour
                         }
                         else if (puck.name!="Move")
                         {
+                           //if its a part of the gridspace
+                           //move the pucks so they stay alligned with the gridspace
                                 Vector3 BodyLocation = new Vector3(CurrXPos-4.86f, puck.transform.position.y, 7);
                                 puck.transform.position = BodyLocation;   
                         }

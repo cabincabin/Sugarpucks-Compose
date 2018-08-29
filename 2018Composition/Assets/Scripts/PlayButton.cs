@@ -17,6 +17,7 @@ public class PlayButton : MonoBehaviour
 
     void Start()
     {
+        //hide the timing bar to start
         PlayPos.GetComponent<SpriteRenderer>().enabled = false;
     }
     
@@ -24,6 +25,7 @@ public class PlayButton : MonoBehaviour
     {
         if (isPlay)
         {
+            
             PlayPos.GetComponent<SpriteRenderer>().enabled = true;
             if (CreateAndPlaySequence.currentStep<11)
             {
@@ -65,6 +67,7 @@ public class PlayButton : MonoBehaviour
                         PlayableSprite SugarPuck = Grid.Sprites[PuckIndex].GetComponent<PlayableSprite>();
                         CreateAndPlaySequence.AddPitchAtStep(SugarPuck.PitchNumber,beat);
                     }
+                    //if there's some sort of puck existance error, remove the error
                     else
                     {
                         Grid.Sprites[PuckIndex].gameObject.GetComponent<SpriteRenderer>().enabled = false;

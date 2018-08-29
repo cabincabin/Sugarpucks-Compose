@@ -25,7 +25,9 @@ public class ClearGrid : MonoBehaviour
         List<GameObject> GridsAsGameObj = timeline.TimingGrids;
         foreach (var GridGameObj in GridsAsGameObj)
         {
+            
             TimingGrid Grid = GridGameObj.GetComponent<TimingGrid>();
+            //for each puck in an individual grid
             foreach (var PlayPuck in Grid.Sprites)
             {
                 //destroy the objects  in the grid

@@ -55,6 +55,7 @@ public class TimelinePositioning : MonoBehaviour{
 
         AddMesureDefaultPosition = measures * lenOfTimelineSeg;
         Vector3 PosOfAdd = new Vector3(AddMesureDefaultPosition, 0f, 0f);
+        //add defaults for te add more mesures button
         P1.transform.position = PosOfAdd;
         P4.transform.position = PosOfAdd;
         PX.transform.position = PosOfAdd;
@@ -63,14 +64,18 @@ public class TimelinePositioning : MonoBehaviour{
 
     public void AppendMesure()
     {
+        //add a mesure
         measures++;
         GameObject NextGrid = Instantiate(Grid, new Vector3(lenOfTimelineSeg * (measures-1), 0f, 10f),
             Quaternion.identity);
+        //add a gridspace, and make the size correct
         if((measures-1)%TimeSig!=0)
             NextGrid.transform.localScale = new Vector3(NextGrid.transform.localScale.x,NextGrid.transform.localScale.y*.8f,NextGrid.transform.localScale.z);
         TimingGrids.Add(NextGrid);
         //get the default location through simple multiplication
         TimingGridDefaultLocation.Add(lenOfTimelineSeg*(measures-1));
+        //update the default location for all of the positions so they move right.
+        //the add mesures button is the last gridspace, so this is inserting the second to last button. Important
         AddMesureDefaultPosition = measures * lenOfTimelineSeg;
         NextGrid.GetComponent<TimingGrid>().BeatNum = (measures-1)%TimeSig;
         updateTimelinePos(transform.position.x);

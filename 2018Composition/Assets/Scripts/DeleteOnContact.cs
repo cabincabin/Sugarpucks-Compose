@@ -18,11 +18,13 @@ public class DeleteOnContact : MonoBehaviour
         {
             //find all objects on the piano section
             Collider2D[] collideObjects = Physics2D.OverlapAreaAll(new Vector2(-10f,4.2f), new Vector2(-5.4f, -5f) );
-            //detect when the sprite is moved out of the grid and remove it from the list
+            //for all objects within the given's object's hitbox
             foreach (var other in collideObjects)
             {
+                //if the object is an extranious note puck
                if (other.gameObject.GetComponents<PlayableSprite>().Length != 0 && !other.gameObject.name.Equals("SugarStick"))
                 {
+                    //delete the puck
                     other.gameObject.GetComponent<SpriteRenderer>().enabled = false;
                     other.gameObject.GetComponent<Collider2D>().enabled = false;
                     Destroy(other);
@@ -34,9 +36,10 @@ public class DeleteOnContact : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //detect when the sprite is moved out of the grid and remove it from the list
+        //detect when the sprite is moved into the object from outside the object
         if (other.gameObject.name.Equals("Move"))
         {
+            //if its moved in, delete it
             other.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             Destroy(other);
         }
